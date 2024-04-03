@@ -1,6 +1,6 @@
 package Model;
 
-public class User {
+public abstract class Akun {
     private String nama;
     private String noTelpon;
     private String alamat;
@@ -37,4 +37,6 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+    
+    public abstract void info();
 }

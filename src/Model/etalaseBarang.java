@@ -9,8 +9,7 @@ public class etalaseBarang {
     public etalaseBarang(Barang barang){
         this.barang = barang;
     }
-            
-    
+           
     public etalaseBarang[] getEtalaseBarang() {
         return etalaseBarang;
     }

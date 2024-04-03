@@ -2,14 +2,13 @@ package Model;
 
 import Model.Toko;
 
-public class Pembeli extends User {
+public class Pembeli extends Akun {
     private String username;
     private String password;
     private String nama;
     private String noTelpon;
     private final String role = "pembeli";
     private int jumlahUserPembeli;
-    private String penggunaAktif;
     private Keranjang[] keranjangBarang;
     private Barang[] barang;
     private Pembeli[] daftarPembeli;
@@ -23,6 +22,7 @@ public class Pembeli extends User {
         this.nama = nama;
         this.noTelpon = noTelpon;
         this.MAX_KERANJANG_BARANG = 10;
+        this.keranjangBarang = new Keranjang[MAX_KERANJANG_BARANG];
     }
 
     public String getUsername() {
@@ -67,14 +67,6 @@ public class Pembeli extends User {
 
     public void setJumlahUserPembeli(int jumlahUserPembeli) {
         this.jumlahUserPembeli = jumlahUserPembeli;
-    }
-
-    public String getPenggunaAktif() {
-        return penggunaAktif;
-    }
-
-    public void setPenggunaAktif(String penggunaAktif) {
-        this.penggunaAktif = penggunaAktif;
     }
     
     public Keranjang[] getKeranjangBarang(int X) {
@@ -126,19 +118,18 @@ public class Pembeli extends User {
         return totalBelanja;
     }
     
-    public void tambahKeranjang(Barang namaBarang){
+    public void tambahKeranjang(Barang namaBarang) {
         for (int i = 0; i < MAX_KERANJANG_BARANG; i++) {
-            if (keranjangBarang[i] == null ) {
+            if (keranjangBarang[i] == null) {
                 keranjangBarang[i] = new Keranjang(namaBarang);
-                System.out.println("Barang " + namaBarang.getNamaBarang() + " telah di tambahkan ke keranjang");
+                System.out.println("Barang " + namaBarang.getNamaBarang() + " telah ditambahkan ke keranjang");
                 int stok = namaBarang.getStokBarang();
                 namaBarang.setStokBarang(stok - 1);
                 totalBarang = totalBarang + 1;
                 return;
-            } else {
-                System.out.println("Barang Sudah Ada di Keranjang");
             }
         }
+        System.out.println("Keranjang penuh");
     }
     
     public void hapusKeranjang(Barang namaBarang){
@@ -157,21 +148,19 @@ public class Pembeli extends User {
     public void printKeranjang() {
         System.out.println("Keranjang Belanja:");
         System.out.println("==================");
-        for (int i = 0; i < totalBarang; i++) {
+        for (int i = 0; i < MAX_KERANJANG_BARANG; i++) {
             if (keranjangBarang[i] != null) {
                 System.out.println("Nama Barang: " + keranjangBarang[i].getBarang().getNamaBarang());
                 System.out.println("Harga Barang: " + keranjangBarang[i].getBarang().getJenisBarang());
                 // Tambahkan informasi lainnya tentang barang jika diperlukan
                 System.out.println("------------------");
-            } else{
-                System.out.println("keranjang kosong");
             }
         }
         System.out.println("Total Belanja: " + totalBelanja);
     }
 
     
-    public void printUserPembeli(){
+    public void info(){
         for (int i = 0; i < jumlahUserPembeli; i++) {
             System.out.println("penjual ke: " + i);
             System.out.println("nama penjual: " + daftarPembeli[i].getNama());

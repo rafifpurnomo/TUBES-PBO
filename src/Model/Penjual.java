@@ -1,8 +1,6 @@
 package Model;
 
-import Model.User;
-
-public class Penjual extends User {
+public class Penjual extends Akun {
     private String username;
     private String password;
     private String nama;
@@ -148,7 +146,7 @@ public class Penjual extends User {
         }
     }
     
-    public void PrintPenjual(){
+    public void info(){
         for (int i = 0; i < jumlahUserPenjual; i++) {
             System.out.println("penjual ke: " + i);
             System.out.println("nama penjual: " + daftarPenjual[i].getNama());
