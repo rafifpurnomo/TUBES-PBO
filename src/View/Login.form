@@ -44,9 +44,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
               <Component id="createAkunPembeli" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="createAkunPenjual" pref="167" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
           </Group>
@@ -65,7 +65,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="354" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
                       <Component id="loginBTN" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -126,9 +126,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
       </Events>
@@ -136,7 +133,6 @@
     <Component class="javax.swing.JButton" name="createAkunPembeli">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buat Akun Pembeli"/>
-        <Property name="actionCommand" type="java.lang.String" value="Buat Akun Pembeli"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAkunPembeliActionPerformed"/>

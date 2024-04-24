@@ -63,7 +63,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        password.setText("jPasswordField1");
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordActionPerformed(evt);
@@ -71,7 +70,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         createAkunPembeli.setText("Buat Akun Pembeli");
-        createAkunPembeli.setActionCommand("Buat Akun Pembeli");
         createAkunPembeli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createAkunPembeliActionPerformed(evt);
@@ -97,9 +95,9 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(211, 211, 211)
+                .addGap(218, 218, 218)
                 .addComponent(createAkunPembeli)
-                .addGap(49, 49, 49)
+                .addGap(42, 42, 42)
                 .addComponent(createAkunPenjual, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                 .addGap(242, 242, 242))
             .addGroup(layout.createSequentialGroup()
@@ -114,7 +112,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                             .addComponent(Username)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
+                        .addGap(359, 359, 359)
                         .addComponent(loginBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -151,8 +149,7 @@ public class Login extends javax.swing.JFrame {
 
     private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
         try {
-            String sql = "SELECT * FROM akun where username ='" + Username.getText()
-                    + "'AND password ='" + password.getText() + "'";
+            String sql = "SELECT * FROM akun where username ='" + Username.getText() + "'AND password ='" + password.getText() + "'";
             java.sql.Connection conn = (Connection)ConfigDB.ConfigDB();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             java.sql.ResultSet rs = pst.executeQuery(sql);
