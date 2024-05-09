@@ -5,8 +5,9 @@
  */
 package View;
 
-import java.sql.Connection;
-import javax.swing.JOptionPane;
+import Controller.AkunController;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -14,10 +15,21 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
+    private AkunController AkunCNTRL;
+    
     public Login() {
         initComponents();
+        AkunCNTRL = new AkunController(this);
     }
-
+    
+    public JTextField usernameLogin(){   
+        return Username ;
+    }
+    
+    public JPasswordField passLogin(){
+        
+        return password;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,7 +152,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_UsernameActionPerformed
 
     private void createAkunPembeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAkunPembeliActionPerformed
@@ -148,25 +160,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_createAkunPembeliActionPerformed
 
     private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
-        try {
-            String sql = "SELECT * FROM akun where username ='" + Username.getText() + "'AND password ='" + password.getText() + "'";
-            java.sql.Connection conn = (Connection)ConfigDB.ConfigDB();
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            java.sql.ResultSet rs = pst.executeQuery(sql);
-            
-            if (rs.next()) {
-                if (Username.getText().equals(rs.getString("Username")) && password.getText().equals(rs.getString("password"))) {
-                    JOptionPane.showMessageDialog(null, "Berhasil Login");
-                    MenuPembeli menuPembeli = new MenuPembeli();
-                    menuPembeli.setVisible(true);
-                    this.dispose();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Username atau Password salah");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+        AkunCNTRL.masuk();
     }//GEN-LAST:event_loginBTNActionPerformed
 
     private void createAkunPenjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAkunPenjualActionPerformed

@@ -1,10 +1,19 @@
 package Model;
 
-public abstract class Akun {
+public class Akun {
     private String nama;
-    private String noTelpon;
-    private String alamat;
+    private String Username;
+    private String password;
     private String role;
+    private String noTelpon;
+
+    public Akun(String nama, String Username, String password, String role, String noTelpon) {
+        this.nama = nama;
+        this.Username = Username;
+        this.password = password;
+        this.role = role;
+        this.noTelpon = noTelpon;
+    }
 
     public String getNama() {
         return nama;
@@ -14,22 +23,22 @@ public abstract class Akun {
         this.nama = nama;
     }
 
-    public String getNoTelpon() {
-        return noTelpon;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setNoTelpon(String noTelpon) {
-        this.noTelpon = noTelpon;
+    public void setUsername(String Username) {
+        this.Username = Username;
     }
 
-    public String getAlamat() {
-        return alamat;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
+
     public String getRole() {
         return role;
     }
@@ -37,6 +46,12 @@ public abstract class Akun {
     public void setRole(String role) {
         this.role = role;
     }
-    
-    public abstract void info();
+
+    public String getNoTelpon() {
+        return noTelpon;
+    }
+
+    public void setNoTelpon(String noTelpon) {
+        this.noTelpon = noTelpon;
+    }
 }
