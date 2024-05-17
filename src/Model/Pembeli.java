@@ -8,7 +8,6 @@ public class Pembeli extends Akun {
 
     public Pembeli(String nama, String Username, String password, String role, String noTelpon) {
         super(nama, Username, password, role, noTelpon);
-        this.role = "Pembeli";
     }
 
     public String getNama() {
@@ -40,7 +39,7 @@ public class Pembeli extends Akun {
     }
 
     public void setRole(String role) {
-        this.role = "Pembeli";
+        this.role = role;
     }
 
     public String getNoTelpon() {

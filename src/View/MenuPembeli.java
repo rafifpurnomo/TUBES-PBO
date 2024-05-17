@@ -5,6 +5,9 @@
  */
 package View;
 
+import Model.UserSession;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Muhammad Rafif A.P
@@ -16,6 +19,19 @@ public class MenuPembeli extends javax.swing.JFrame {
      */
     public MenuPembeli() {
         initComponents();
+        int idUser = UserSession.getId();
+        
+        String namaUser = UserSession.getNama();
+        String noTelpon = UserSession.getNoTelpon();
+        String Username = UserSession.getUsername();
+        
+        NamaUserHome.setText(namaUser);
+        NamaUserProfile.setText(namaUser);
+        NoTelpUserProfile.setText(noTelpon);
+        UsernameUserProfile.setText(Username);
+        
+        
+        
     }
 
     /**
@@ -27,32 +43,220 @@ public class MenuPembeli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MenuPembeli = new javax.swing.JTabbedPane();
+        HomePembeli = new javax.swing.JPanel();
+        SelamatDatang = new javax.swing.JLabel();
+        NamaUserHome = new javax.swing.JLabel();
+        KeranjangPembeli = new javax.swing.JPanel();
+        ProfilePembeli = new javax.swing.JPanel();
+        LogoutBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        UsernameUserProfile = new javax.swing.JLabel();
+        NamaUserProfile = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        NoTelpUserProfile = new javax.swing.JLabel();
+        UbahNama = new javax.swing.JButton();
+        UbahUsername = new javax.swing.JButton();
+        UbahNoTelpon = new javax.swing.JButton();
+        UbahPassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("INI MENU PEMBELI");
+        SelamatDatang.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        SelamatDatang.setText("Selamat datang:");
+
+        NamaUserHome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        NamaUserHome.setText("Nama User");
+
+        javax.swing.GroupLayout HomePembeliLayout = new javax.swing.GroupLayout(HomePembeli);
+        HomePembeli.setLayout(HomePembeliLayout);
+        HomePembeliLayout.setHorizontalGroup(
+            HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomePembeliLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(SelamatDatang)
+                .addGap(5, 5, 5)
+                .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        HomePembeliLayout.setVerticalGroup(
+            HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomePembeliLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SelamatDatang)
+                    .addComponent(NamaUserHome))
+                .addContainerGap(408, Short.MAX_VALUE))
+        );
+
+        MenuPembeli.addTab("Home", HomePembeli);
+
+        javax.swing.GroupLayout KeranjangPembeliLayout = new javax.swing.GroupLayout(KeranjangPembeli);
+        KeranjangPembeli.setLayout(KeranjangPembeliLayout);
+        KeranjangPembeliLayout.setHorizontalGroup(
+            KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        KeranjangPembeliLayout.setVerticalGroup(
+            KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+        );
+
+        MenuPembeli.addTab("Keranjang", KeranjangPembeli);
+
+        LogoutBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        LogoutBTN.setText("Logout");
+        LogoutBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutBTNActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nama:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Username:");
+
+        UsernameUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        UsernameUserProfile.setText("username user");
+
+        NamaUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NamaUserProfile.setText("nama user");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("No Telpon:");
+
+        NoTelpUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NoTelpUserProfile.setText("no telpon user");
+
+        UbahNama.setText("Ubah Nama");
+        UbahNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNamaActionPerformed(evt);
+            }
+        });
+
+        UbahUsername.setText("Ubah Username");
+        UbahUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahUsernameActionPerformed(evt);
+            }
+        });
+
+        UbahNoTelpon.setText("Ubah no Telpon");
+        UbahNoTelpon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNoTelponActionPerformed(evt);
+            }
+        });
+
+        UbahPassword.setText("Ubah Password");
+        UbahPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahPasswordActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ProfilePembeliLayout = new javax.swing.GroupLayout(ProfilePembeli);
+        ProfilePembeli.setLayout(ProfilePembeliLayout);
+        ProfilePembeliLayout.setHorizontalGroup(
+            ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilePembeliLayout.createSequentialGroup()
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6))
+                                .addGap(10, 10, 10))
+                            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(44, 44, 44)))
+                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NoTelpUserProfile)
+                            .addComponent(UsernameUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NamaUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(74, 74, 74)
+                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UbahNama)
+                            .addComponent(LogoutBTN)
+                            .addComponent(UbahUsername)
+                            .addComponent(UbahNoTelpon)))
+                    .addComponent(UbahPassword))
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
+        ProfilePembeliLayout.setVerticalGroup(
+            ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilePembeliLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(NamaUserProfile)
+                    .addComponent(UbahNama))
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(UsernameUserProfile)
+                    .addComponent(UbahUsername))
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(NoTelpUserProfile)
+                    .addComponent(UbahNoTelpon))
+                .addGap(18, 18, 18)
+                .addComponent(UbahPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(LogoutBTN)
+                .addGap(145, 145, 145))
+        );
+
+        MenuPembeli.addTab("Profile", ProfilePembeli);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(181, 181, 181))
+            .addComponent(MenuPembeli)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel1)
-                .addContainerGap(264, Short.MAX_VALUE))
+            .addComponent(MenuPembeli)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
+        UserSession.clearSession();
+        
+        Login LoginScreen = new Login();
+        LoginScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoutBTNActionPerformed
+
+    private void UbahNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaActionPerformed
+        UbahNamaUser changeName = new UbahNamaUser();
+        changeName.setVisible(true);
+    }//GEN-LAST:event_UbahNamaActionPerformed
+
+    private void UbahNoTelponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNoTelponActionPerformed
+        UbahNoTelpon changeNoTelpon = new UbahNoTelpon();
+        changeNoTelpon.setVisible(true);
+    }//GEN-LAST:event_UbahNoTelponActionPerformed
+
+    private void UbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahPasswordActionPerformed
+        UbahPassword changePassword = new UbahPassword();
+        changePassword.setVisible(true);
+    }//GEN-LAST:event_UbahPasswordActionPerformed
+
+    private void UbahUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahUsernameActionPerformed
+        UbahUsername changeUsername = new UbahUsername();
+        changeUsername.setVisible(true);
+    }//GEN-LAST:event_UbahUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +294,22 @@ public class MenuPembeli extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel HomePembeli;
+    private javax.swing.JPanel KeranjangPembeli;
+    private javax.swing.JButton LogoutBTN;
+    private javax.swing.JTabbedPane MenuPembeli;
+    private javax.swing.JLabel NamaUserHome;
+    private javax.swing.JLabel NamaUserProfile;
+    private javax.swing.JLabel NoTelpUserProfile;
+    private javax.swing.JPanel ProfilePembeli;
+    private javax.swing.JLabel SelamatDatang;
+    private javax.swing.JButton UbahNama;
+    private javax.swing.JButton UbahNoTelpon;
+    private javax.swing.JButton UbahPassword;
+    private javax.swing.JButton UbahUsername;
+    private javax.swing.JLabel UsernameUserProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

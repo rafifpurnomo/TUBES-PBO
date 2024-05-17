@@ -3,23 +3,29 @@
 
 Dengan tema aplikasi jual beli makanan. Menggunakan metode Model View Controller (MVC) serta MySQL untuk databasenya
 
-## Features
+# Features
 
-- Login
-- Register
-- Tambah Keranjang
-- Hapus Keranjang
-- Check out Barang
-- Transaksi
-- Hapus & Tambah User atau Barang
+Pada aplikasi ini memilikii 3 role utama, yaitu Admin, Penjual, dan Pembeli. Serta setiap role memiliki fiturnya maing-masing
 
+|**Fitur**| **Penjual** |  **Pembeli**  | **Admin** |
+|:-------|:-----------:|:--------:|:------:|
+| Register| ✅          |    ✅   | ❌ |
+|Login    | ✅          |✅       | ✅ |
+|Tambah & hapus Keranjang| ❌   |✅ |  ❌|
+|Tambah & hapus Barang| ✅   |❌ |  ❌|
+|Update Profile| ✅   |✅ |  ✅|
+|Update Toko| ✅   |❌ |  ❌|
+|Transaksi| ✅   |✅ |  ❌|
+|Checkout Barang| ❌   |❌ |  ✅|
+|Hapus User atau Barang| ❌   |❌ |  ✅|
 
-## Contributing
+# Contributing
+**Kelompok 10 PBO**
 
-Kelompok 10 PBO
-
-- Muhammad Rafif AryaSatya Purnomo 1302220003
-- Muhammad Ghaziveda Belvanaufal 1302220011
-- Reihan Ramdhana Anwari 1302220048
-- Irji Syahrul Bil Muthahhir 1302220088
-- Rakean Jati Permana 1302220115
+|**Nama**| **NIM** |  
+|:-------|:-----------:|
+|Muhammad Rafif AryaSatya Purnomo|1302220003|
+|Muhammad Ghaziveda Belvanaufal|1302220011|
+|Reihan Ramdhana Anwari|1302220048|
+|Irji Syahrul Bil Muthahhir |1302220088|
+|Rakean Jati Permana|1302220115|

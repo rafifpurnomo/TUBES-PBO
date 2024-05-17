@@ -1,6 +1,6 @@
 package Model;
 
-public class Akun {
+public abstract class Akun {
     private String nama;
     private String Username;
     private String password;
