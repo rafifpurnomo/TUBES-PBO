@@ -129,14 +129,8 @@ public class SetDataToko extends javax.swing.JFrame {
         if (inputNamaToko == null && inputAlamatToko == null) {
             JOptionPane.showMessageDialog(null, "nama atau alamat toko tidak boleh kosong!", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
-            Toko newToko = driver.tambahToko(UserSession.getId(), inputNamaToko.getText(), inputAlamatToko.getText());
-            boolean status = tokoCNTRL.tambahToko(newToko);
-            if (status) {
-                JOptionPane.showMessageDialog(null, "Toko berhasil didaftarkan!", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Terjadi kesalahan !", "WARNING", JOptionPane.WARNING_MESSAGE);
-            }
+            boolean status = tokoCNTRL.tambahToko(UserSession.getId(), inputNamaToko.getText(), inputAlamatToko.getText());
+            driver.tambahToko(status);
         }
     }//GEN-LAST:event_DaftarTokoBTNActionPerformed
 

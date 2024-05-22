@@ -25,20 +25,26 @@ public class EditDataMakanan extends javax.swing.JFrame {
     private DriverOnlineShop driver;
     private MakananController mknnCNTRL;
     public String namaMakanan;
-    public int stok;
+    public int stok, idMakanan;
     public double harga;
     
     public EditDataMakanan() {
         driver = new DriverOnlineShop(this);
         mknnCNTRL = new MakananController();
         initComponents();
-        editDataMakanan(namaMakanan, stok, harga);
     }
     
-    public void editDataMakanan(String namaMakanan, int stok, double harga){
+    public void editDataMakanan(int idMakanan, String namaMakanan, int stok, double harga){
+        this.idMakanan = idMakanan;
+        this.namaMakanan = namaMakanan;
+        this.stok = stok;
+        this.harga = harga;
+        
         String STOK = String.valueOf(stok);
         String HARGA = String.valueOf(harga);
+        String ID_MAKANAN = String.valueOf(idMakanan);
         
+        idMakananDisplay.setText(ID_MAKANAN);
         namaMakananDisplay.setText(namaMakanan); 
         hargaMakananDisplay.setText(HARGA);
         stokMakananDisplay.setText(STOK);
@@ -69,6 +75,9 @@ public class EditDataMakanan extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         stokMakananInput = new javax.swing.JSpinner();
         UpdateMakananBTN = new javax.swing.JButton();
+        hapusMakananBTN = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        idMakananDisplay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +125,17 @@ public class EditDataMakanan extends javax.swing.JFrame {
             }
         });
 
+        hapusMakananBTN.setText("Hapus makanan");
+        hapusMakananBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusMakananBTNActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("id makanan:");
+
+        idMakananDisplay.setText("id makanan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,10 +144,6 @@ public class EditDataMakanan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BackBTN)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(namaMakananDisplay))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,14 +155,27 @@ public class EditDataMakanan extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(HargaMakananInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addComponent(NamaMakananInput, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel8)
                     .addComponent(stokMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UpdateMakananBTN))
-                .addContainerGap(502, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(HargaMakananInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                .addComponent(NamaMakananInput, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel7))
+                        .addGap(176, 176, 176)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hapusMakananBTN)
+                            .addComponent(UpdateMakananBTN)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idMakananDisplay)
+                            .addComponent(namaMakananDisplay))))
+                .addContainerGap(317, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,6 +184,10 @@ public class EditDataMakanan extends javax.swing.JFrame {
                 .addComponent(BackBTN)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(idMakananDisplay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -172,18 +205,21 @@ public class EditDataMakanan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NamaMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NamaMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hapusMakananBTN))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(HargaMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(HargaMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UpdateMakananBTN))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stokMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(UpdateMakananBTN)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,8 +234,19 @@ public class EditDataMakanan extends javax.swing.JFrame {
     }//GEN-LAST:event_NamaMakananInputActionPerformed
 
     private void UpdateMakananBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateMakananBTNActionPerformed
-        // TODO add your handling code here:
+
+        String newNamaMakanan = NamaMakananInput.getText();
+        int stokMakanan = (int) stokMakananInput.getValue();
+        double harga = ((Number) HargaMakananInput.getValue()).doubleValue();
+        
+        boolean status = mknnCNTRL.updateMakanan(idMakanan, newNamaMakanan, harga, stokMakanan);
+        driver.updateMakanan(status);
     }//GEN-LAST:event_UpdateMakananBTNActionPerformed
+
+    private void hapusMakananBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusMakananBTNActionPerformed
+        boolean status = mknnCNTRL.hapusMakanan(idMakanan);
+        driver.hapusMakanan(status);
+    }//GEN-LAST:event_hapusMakananBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,7 +295,9 @@ public class EditDataMakanan extends javax.swing.JFrame {
     private javax.swing.JSpinner HargaMakananInput;
     private javax.swing.JTextField NamaMakananInput;
     private javax.swing.JButton UpdateMakananBTN;
+    private javax.swing.JButton hapusMakananBTN;
     private javax.swing.JLabel hargaMakananDisplay;
+    private javax.swing.JLabel idMakananDisplay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,6 +306,7 @@ public class EditDataMakanan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel namaMakananDisplay;
     private javax.swing.JLabel stokMakananDisplay;
     private javax.swing.JSpinner stokMakananInput;

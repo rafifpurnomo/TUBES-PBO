@@ -6,9 +6,16 @@
 package View;
 
 import Controller.MakananController;
+import Controller.TokoController;
 import Model.DriverOnlineShop;
 import Model.UserSession;
+import Model.Toko;
+import static java.awt.Frame.NORMAL;
+import static java.awt.image.ImageObserver.ERROR;
+import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,9 +28,14 @@ public class MenuPembeli extends javax.swing.JFrame {
      */
     
     private DriverOnlineShop driver;
+    private TokoController tokoCNTRL;
+    private MakananController mknCNTRL;
+    private DefaultTableModel table_model;
     
     public MenuPembeli() {
-        
+        driver = new DriverOnlineShop(this);
+        tokoCNTRL = new TokoController();
+        mknCNTRL = new MakananController();
         
         initComponents();
         int idUser = UserSession.getId();
@@ -36,7 +48,27 @@ public class MenuPembeli extends javax.swing.JFrame {
         NamaUserProfile.setText(namaUser);
         NoTelpUserProfile.setText(noTelpon);
         UsernameUserProfile.setText(Username);        
+        
+        String[] judulTabel = {"id toko", "nama toko", "alamat toko"};
+        table_model = new DefaultTableModel(judulTabel, 0);
+        daftarTokoMakanan.setModel(table_model);
+        
+        loadToko();
     }
+    
+    private void loadToko(){
+        List<Toko> dataToko = tokoCNTRL.getAllToko();
+        
+        for(Toko toko : dataToko){
+            Object[] rowData = {
+                toko.getId_toko(),
+                toko.getNamaToko(),
+                toko.getAlamatToko()
+        };
+        table_model.addRow(rowData);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +82,13 @@ public class MenuPembeli extends javax.swing.JFrame {
         HomePembeli = new javax.swing.JPanel();
         SelamatDatang = new javax.swing.JLabel();
         NamaUserHome = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cariToko = new javax.swing.JTextField();
+        cariTokoBTN = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        daftarTokoMakanan = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        updateDaftarTokoBTN = new javax.swing.JButton();
         KeranjangPembeli = new javax.swing.JPanel();
         ProfilePembeli = new javax.swing.JPanel();
         LogoutBTN = new javax.swing.JButton();
@@ -72,16 +111,68 @@ public class MenuPembeli extends javax.swing.JFrame {
         NamaUserHome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         NamaUserHome.setText("Nama User");
 
+        jLabel3.setText("Cari toko");
+
+        cariTokoBTN.setText("Cari toko");
+        cariTokoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariTokoBTNActionPerformed(evt);
+            }
+        });
+
+        daftarTokoMakanan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(daftarTokoMakanan);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Daftar toko makanan");
+
+        updateDaftarTokoBTN.setText("update daftar toko");
+        updateDaftarTokoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDaftarTokoBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HomePembeliLayout = new javax.swing.GroupLayout(HomePembeli);
         HomePembeli.setLayout(HomePembeliLayout);
         HomePembeliLayout.setHorizontalGroup(
             HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomePembeliLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(SelamatDatang)
-                .addGap(5, 5, 5)
-                .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                        .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HomePembeliLayout.createSequentialGroup()
+                                .addComponent(SelamatDatang)
+                                .addGap(5, 5, 5)
+                                .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(HomePembeliLayout.createSequentialGroup()
+                                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                                        .addComponent(cariToko, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cariTokoBTN)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                        .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(HomePembeliLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(updateDaftarTokoBTN)))
+                        .addGap(0, 182, Short.MAX_VALUE))))
         );
         HomePembeliLayout.setVerticalGroup(
             HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +181,19 @@ public class MenuPembeli extends javax.swing.JFrame {
                 .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SelamatDatang)
                     .addComponent(NamaUserHome))
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cariToko, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariTokoBTN))
+                .addGap(59, 59, 59)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateDaftarTokoBTN))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         MenuPembeli.addTab("Home", HomePembeli);
@@ -99,11 +202,11 @@ public class MenuPembeli extends javax.swing.JFrame {
         KeranjangPembeli.setLayout(KeranjangPembeliLayout);
         KeranjangPembeliLayout.setHorizontalGroup(
             KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 811, Short.MAX_VALUE)
         );
         KeranjangPembeliLayout.setVerticalGroup(
             KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         MenuPembeli.addTab("Keranjang", KeranjangPembeli);
@@ -190,7 +293,7 @@ public class MenuPembeli extends javax.swing.JFrame {
                             .addComponent(UbahUsername)
                             .addComponent(UbahNoTelpon)))
                     .addComponent(UbahPassword))
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         ProfilePembeliLayout.setVerticalGroup(
             ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +315,7 @@ public class MenuPembeli extends javax.swing.JFrame {
                     .addComponent(UbahNoTelpon))
                 .addGap(18, 18, 18)
                 .addComponent(UbahPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addComponent(LogoutBTN)
                 .addGap(145, 145, 145))
         );
@@ -260,6 +363,38 @@ public class MenuPembeli extends javax.swing.JFrame {
         UbahUsername changeUsername = new UbahUsername();
         changeUsername.setVisible(true);
     }//GEN-LAST:event_UbahUsernameActionPerformed
+
+    private void cariTokoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariTokoBTNActionPerformed
+        cariToko.getText();
+        
+        daftarTokoMakanan.removeAll();
+        int rows = table_model.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            table_model.removeRow(i);
+        }
+        
+        Toko newToko = tokoCNTRL.getTokoByNama(cariToko.getText());
+        if (newToko == null) {
+            JOptionPane.showMessageDialog(null, "toko tidak ada", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Object[] returnSearch = {
+                newToko.getId_toko(),
+                newToko.getNamaToko(),
+                newToko.getAlamatToko()
+            };
+            table_model.addRow(returnSearch);
+        }
+    }//GEN-LAST:event_cariTokoBTNActionPerformed
+
+    private void updateDaftarTokoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDaftarTokoBTNActionPerformed
+        daftarTokoMakanan.removeAll();
+        int rows = table_model.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            table_model.removeRow(i);
+        }
+        
+        loadToko();
+    }//GEN-LAST:event_updateDaftarTokoBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,8 +446,15 @@ public class MenuPembeli extends javax.swing.JFrame {
     private javax.swing.JButton UbahPassword;
     private javax.swing.JButton UbahUsername;
     private javax.swing.JLabel UsernameUserProfile;
+    private javax.swing.JTextField cariToko;
+    private javax.swing.JButton cariTokoBTN;
+    private javax.swing.JTable daftarTokoMakanan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton updateDaftarTokoBTN;
     // End of variables declaration//GEN-END:variables
 }

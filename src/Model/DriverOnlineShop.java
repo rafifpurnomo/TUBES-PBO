@@ -1,11 +1,13 @@
 package Model;
 
 import Controller.AkunController;
+import Controller.MakananController;
 import Controller.TokoController;
 import View.EditDataMakanan;
 import View.RegisterPembeli;
 import View.RegisterPenjual;
 import View.Login;
+import View.MenuPembeli;
 import View.MenuPenjual;
 import View.SetDataToko;
 import View.UbahAlamatToko;
@@ -14,6 +16,7 @@ import View.UbahNoTelpon;
 import View.UbahNamaUser;
 import View.UbahUsername;
 import View.UbahNamaToko;
+import View.tambahDataMakanan;
 import javax.swing.JOptionPane;
 
 public class DriverOnlineShop {
@@ -27,10 +30,13 @@ public class DriverOnlineShop {
     private UbahAlamatToko asUbahAlamatToko;
     private MenuPenjual asMenuPenjual;
     private EditDataMakanan asEditDataMakanan;
+    private tambahDataMakanan asTambahDataMakanan;
+    private MenuPembeli asMenuPembeli;
     
     private Login asLogin;
     AkunController akunCNTRL;
     TokoController tokoCNTRL;
+    MakananController mknCNTRL;
     
     
     public DriverOnlineShop(RegisterPembeli asRegPembeli){
@@ -69,6 +75,13 @@ public class DriverOnlineShop {
         tokoCNTRL = new TokoController();
     }
     
+    public DriverOnlineShop(MenuPembeli asMenuPembeli){
+        this.asMenuPembeli = asMenuPembeli;
+        akunCNTRL = new AkunController();
+        tokoCNTRL = new TokoController();
+        mknCNTRL = new MakananController();
+    }
+    
     public DriverOnlineShop(SetDataToko asSetDataToko){
         this.asMenuPenjual = asMenuPenjual;
         akunCNTRL = new AkunController();
@@ -87,6 +100,11 @@ public class DriverOnlineShop {
     
     public DriverOnlineShop(EditDataMakanan asEditDataMakanan){
         this.asEditDataMakanan = asEditDataMakanan;
+        tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(tambahDataMakanan asTambahDataMakanan){
+        this.asTambahDataMakanan = asTambahDataMakanan;
         tokoCNTRL = new TokoController();
     }
     
@@ -167,15 +185,11 @@ public class DriverOnlineShop {
         }
     }
     
-    public Toko tambahToko(int id_akun, String namaToko, String alamat){
-        if (!namaToko.isEmpty() && !alamat.isEmpty()) {
-            Toko newToko = new Toko(id_akun, namaToko, namaToko);
-            newToko.setId_akun(id_akun);
-            newToko.setNamaToko(namaToko);
-            newToko.setAlamatToko(alamat);
-            return newToko;
+    public void tambahToko(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Nama toko anda diubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            return null;
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -194,6 +208,30 @@ public class DriverOnlineShop {
             
         if (success) {
             JOptionPane.showMessageDialog(null, "Alamat toko anda diubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void updateMakanan(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Data makanan anda diubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void hapusMakanan(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Data makanan berhasil di hapus!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void tambahMakanan(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Data makanan berhasil di tambahkan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
