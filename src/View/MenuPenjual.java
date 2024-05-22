@@ -5,6 +5,17 @@
  */
 package View;
 
+import Controller.AkunController;
+import Controller.MakananController;
+import Controller.TokoController;
+import Model.DriverOnlineShop;
+import Model.Makanan;
+import Model.UserSession;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Muhammad Rafif A.P
@@ -14,8 +25,49 @@ public class MenuPenjual extends javax.swing.JFrame {
     /**
      * Creates new form MenuPembeli
      */
+    
+    private AkunController akunCNTRL;
+    private DriverOnlineShop driver;
+    private TokoController tokoCNTRL;
+    private MakananController mknCNTRL;
+    private DefaultTableModel table_model;
+    
     public MenuPenjual() {
+        akunCNTRL = new AkunController();
+        driver = new DriverOnlineShop(this);
+        tokoCNTRL = new TokoController();
+        mknCNTRL = new MakananController();
+        
         initComponents();
+        int idUser = UserSession.getId();
+        
+        NamaUserHome.setText(UserSession.getNama());
+        NamaUserProfile.setText(UserSession.getNama());
+        NoTelpUserProfile.setText(UserSession.getNoTelpon());
+        UsernameUserProfile.setText(UserSession.getUsername());
+        NamaTokoProfile.setText(UserSession.getNamaToko());
+        AlamatTokoProfile.setText(UserSession.getAlamatToko());
+        
+        String[] judulTable = {"nama makanan", "stok", "harga"};
+        table_model = new DefaultTableModel(judulTable, 0);
+        TableDaftarProduk.setModel(table_model);
+        TableDaftarProduk.isCellEditable(ERROR, NORMAL);
+        
+        loadDataMakanan();
+    }
+    
+    private void loadDataMakanan(){
+        int idToko = UserSession.getIdToko();
+        List<Makanan> dataMakanan = mknCNTRL.getMakananByToko(UserSession.getIdToko());
+        
+        for(Makanan makanan : dataMakanan){
+            Object[] rowData = {
+            makanan.getNamaBarang(),
+            makanan.getStok(),
+            makanan.getHarga()
+        };
+        table_model.addRow(rowData);
+        }
     }
 
     /**
@@ -27,32 +79,397 @@ public class MenuPenjual extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MenuPembeli = new javax.swing.JTabbedPane();
+        HomePembeli = new javax.swing.JPanel();
+        SelamatDatang = new javax.swing.JLabel();
+        NamaUserHome = new javax.swing.JLabel();
+        KeranjangPembeli = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableDaftarProduk = new javax.swing.JTable();
+        ProfilePembeli = new javax.swing.JPanel();
+        LogoutBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        UsernameUserProfile = new javax.swing.JLabel();
+        NamaUserProfile = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        NoTelpUserProfile = new javax.swing.JLabel();
+        UbahNama = new javax.swing.JButton();
+        UbahUsername = new javax.swing.JButton();
+        UbahNoTelpon = new javax.swing.JButton();
+        UbahPassword = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        NamaTokoProfile = new javax.swing.JLabel();
+        UbahNamaToko = new javax.swing.JButton();
+        SetNamaToko = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        AlamatTokoProfile = new javax.swing.JLabel();
+        UbahAlamatToko = new javax.swing.JButton();
+        SetAlamatToko = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("INI MENU PENJUAL");
+        SelamatDatang.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        SelamatDatang.setText("Selamat datang:");
+
+        NamaUserHome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        NamaUserHome.setText("Nama User");
+
+        javax.swing.GroupLayout HomePembeliLayout = new javax.swing.GroupLayout(HomePembeli);
+        HomePembeli.setLayout(HomePembeliLayout);
+        HomePembeliLayout.setHorizontalGroup(
+            HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomePembeliLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(SelamatDatang)
+                .addGap(5, 5, 5)
+                .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        HomePembeliLayout.setVerticalGroup(
+            HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomePembeliLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SelamatDatang)
+                    .addComponent(NamaUserHome))
+                .addContainerGap(442, Short.MAX_VALUE))
+        );
+
+        MenuPembeli.addTab("Home", HomePembeli);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("Daftar Produk Makanan Anda");
+
+        TableDaftarProduk.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TableDaftarProduk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableDaftarProdukMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TableDaftarProduk);
+
+        javax.swing.GroupLayout KeranjangPembeliLayout = new javax.swing.GroupLayout(KeranjangPembeli);
+        KeranjangPembeli.setLayout(KeranjangPembeliLayout);
+        KeranjangPembeliLayout.setHorizontalGroup(
+            KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                .addContainerGap(175, Short.MAX_VALUE)
+                .addGroup(KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeranjangPembeliLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(168, 168, 168))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeranjangPembeliLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(221, 221, 221))))
+        );
+        KeranjangPembeliLayout.setVerticalGroup(
+            KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(277, Short.MAX_VALUE))
+        );
+
+        MenuPembeli.addTab("Makanan", KeranjangPembeli);
+
+        LogoutBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        LogoutBTN.setText("Logout");
+        LogoutBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutBTNActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nama:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Username:");
+
+        UsernameUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        UsernameUserProfile.setText("username user");
+
+        NamaUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NamaUserProfile.setText("nama user");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("No Telpon:");
+
+        NoTelpUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NoTelpUserProfile.setText("no telpon user");
+
+        UbahNama.setText("Ubah Nama");
+        UbahNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNamaActionPerformed(evt);
+            }
+        });
+
+        UbahUsername.setText("Ubah Username");
+        UbahUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahUsernameActionPerformed(evt);
+            }
+        });
+
+        UbahNoTelpon.setText("Ubah no Telpon");
+        UbahNoTelpon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNoTelponActionPerformed(evt);
+            }
+        });
+
+        UbahPassword.setText("Ubah Password");
+        UbahPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahPasswordActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Nama Toko:");
+
+        NamaTokoProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NamaTokoProfile.setText("nama toko");
+
+        UbahNamaToko.setText("Ubah nama toko");
+        UbahNamaToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNamaTokoActionPerformed(evt);
+            }
+        });
+
+        SetNamaToko.setText("Set Nama Toko");
+        SetNamaToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetNamaTokoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Alamat Toko:");
+
+        AlamatTokoProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        AlamatTokoProfile.setText("Alamat toko");
+
+        UbahAlamatToko.setText("Ubah Alamat toko");
+        UbahAlamatToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahAlamatTokoActionPerformed(evt);
+            }
+        });
+
+        SetAlamatToko.setText("Set Nama Toko");
+        SetAlamatToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetAlamatTokoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ProfilePembeliLayout = new javax.swing.GroupLayout(ProfilePembeli);
+        ProfilePembeli.setLayout(ProfilePembeliLayout);
+        ProfilePembeliLayout.setHorizontalGroup(
+            ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UbahPassword)
+                    .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilePembeliLayout.createSequentialGroup()
+                                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel6))
+                                        .addGap(10, 10, 10))
+                                    .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(44, 44, 44)))
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NoTelpUserProfile)
+                                    .addComponent(UsernameUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(NamaUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(10, 10, 10)
+                                .addComponent(NamaTokoProfile)))
+                        .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(UbahNama)
+                                    .addComponent(LogoutBTN)
+                                    .addComponent(UbahUsername)
+                                    .addComponent(UbahNoTelpon)))
+                            .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                                        .addGap(74, 74, 74)
+                                        .addComponent(UbahAlamatToko)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilePembeliLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(UbahNamaToko)
+                                        .addGap(22, 22, 22)))
+                                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SetAlamatToko)
+                                    .addComponent(SetNamaToko)))))
+                    .addGroup(ProfilePembeliLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(10, 10, 10)
+                        .addComponent(AlamatTokoProfile)))
+                .addContainerGap(209, Short.MAX_VALUE))
+        );
+        ProfilePembeliLayout.setVerticalGroup(
+            ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilePembeliLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(NamaUserProfile)
+                    .addComponent(UbahNama))
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(UsernameUserProfile)
+                    .addComponent(UbahUsername))
+                .addGap(18, 18, 18)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(NoTelpUserProfile)
+                    .addComponent(UbahNoTelpon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(NamaTokoProfile)
+                    .addComponent(UbahNamaToko)
+                    .addComponent(SetNamaToko))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ProfilePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(AlamatTokoProfile)
+                    .addComponent(UbahAlamatToko)
+                    .addComponent(SetAlamatToko))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(UbahPassword)
+                .addGap(23, 23, 23)
+                .addComponent(LogoutBTN)
+                .addGap(145, 145, 145))
+        );
+
+        MenuPembeli.addTab("Profile", ProfilePembeli);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(181, 181, 181))
+            .addComponent(MenuPembeli)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel1)
-                .addContainerGap(264, Short.MAX_VALUE))
+            .addComponent(MenuPembeli)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
+        UserSession.clearSession();
+        
+        Login LoginScreen = new Login();
+        LoginScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoutBTNActionPerformed
+
+    private void UbahNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaActionPerformed
+        UbahNamaUser changeName = new UbahNamaUser();
+        changeName.setVisible(true);
+    }//GEN-LAST:event_UbahNamaActionPerformed
+
+    private void UbahNoTelponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNoTelponActionPerformed
+        UbahNoTelpon changeNoTelpon = new UbahNoTelpon();
+        changeNoTelpon.setVisible(true);
+    }//GEN-LAST:event_UbahNoTelponActionPerformed
+
+    private void UbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahPasswordActionPerformed
+        UbahPassword changePassword = new UbahPassword();
+        changePassword.setVisible(true);
+    }//GEN-LAST:event_UbahPasswordActionPerformed
+
+    private void UbahUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahUsernameActionPerformed
+        UbahUsername changeUsername = new UbahUsername();
+        changeUsername.setVisible(true);
+    }//GEN-LAST:event_UbahUsernameActionPerformed
+
+    private void UbahNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaTokoActionPerformed
+        if (UserSession.getNamaToko() != null && !UserSession.getNamaToko().isEmpty()) {
+            UbahNamaToko newUbahNamaToko = new UbahNamaToko();
+            newUbahNamaToko.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda belum mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_UbahNamaTokoActionPerformed
+
+    private void SetNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetNamaTokoActionPerformed
+        if (UserSession.getNamaToko() == null || UserSession.getNamaToko().isEmpty()) {
+            SetDataToko newDataToko = new SetDataToko();
+            newDataToko.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda sudah mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_SetNamaTokoActionPerformed
+
+    private void UbahAlamatTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahAlamatTokoActionPerformed
+        if (UserSession.getNamaToko() != null && !UserSession.getNamaToko().isEmpty()) {
+            SetDataToko newUbahNamaToko = new SetDataToko();
+            newUbahNamaToko.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda belum mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_UbahAlamatTokoActionPerformed
+
+    private void SetAlamatTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAlamatTokoActionPerformed
+        if (UserSession.getNamaToko() == null || UserSession.getNamaToko().isEmpty()) {
+            SetDataToko newDataToko = new SetDataToko();
+            newDataToko.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda sudah mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_SetAlamatTokoActionPerformed
+
+    private void TableDaftarProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDaftarProdukMouseClicked
+        int selectedRow = TableDaftarProduk.getSelectedRow();
+    if (selectedRow != -1) {
+        // Langkah 2: Dapatkan Data dari Baris yang Diklik
+        String namaMakanan = table_model.getValueAt(selectedRow, 0).toString();
+        int stok = Integer.parseInt(table_model.getValueAt(selectedRow, 1).toString());
+        double harga = Double.parseDouble(table_model.getValueAt(selectedRow, 2).toString());
+        
+        // Langkah 3: Pindah ke Halaman Edit
+        // Buat instance dari form atau frame untuk mengedit produk makanan
+        EditDataMakanan editForm = new EditDataMakanan();
+        editForm.editDataMakanan(namaMakanan, stok,harga);
+        editForm.setVisible(true);
+        
+        // Opsional: Menutup halaman saat ini jika diperlukan
+        // this.dispose();
+    }
+    }//GEN-LAST:event_TableDaftarProdukMouseClicked
 
     /**
      * @param args the command line arguments
@@ -91,6 +508,33 @@ public class MenuPenjual extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AlamatTokoProfile;
+    private javax.swing.JPanel HomePembeli;
+    private javax.swing.JPanel KeranjangPembeli;
+    private javax.swing.JButton LogoutBTN;
+    private javax.swing.JTabbedPane MenuPembeli;
+    private javax.swing.JLabel NamaTokoProfile;
+    private javax.swing.JLabel NamaUserHome;
+    private javax.swing.JLabel NamaUserProfile;
+    private javax.swing.JLabel NoTelpUserProfile;
+    private javax.swing.JPanel ProfilePembeli;
+    private javax.swing.JLabel SelamatDatang;
+    private javax.swing.JButton SetAlamatToko;
+    private javax.swing.JButton SetNamaToko;
+    private javax.swing.JTable TableDaftarProduk;
+    private javax.swing.JButton UbahAlamatToko;
+    private javax.swing.JButton UbahNama;
+    private javax.swing.JButton UbahNamaToko;
+    private javax.swing.JButton UbahNoTelpon;
+    private javax.swing.JButton UbahPassword;
+    private javax.swing.JButton UbahUsername;
+    private javax.swing.JLabel UsernameUserProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,7 +28,10 @@ public class LoginController implements Model.Login{
     
     public void Login(String username, String password){
         
-        String sql = "SELECT * FROM akun WHERE username=? AND password=?";
+        String sql = "SELECT a.*, t.id_toko, t.nama_toko, t.alamat " +
+                 "FROM akun a " +
+                 "LEFT JOIN toko t ON a.id_akun = t.id_akun " +
+                 "WHERE a.username = ? AND a.password = ?";
         
         try (Connection conn = ConfigDB.getConnection(); 
         PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -39,15 +42,21 @@ public class LoginController implements Model.Login{
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     
-                    String role = rs.getString("role");
-                    String nama = rs.getString("nama");
-                    String noTelpon = rs.getString("no_telpon");
                     int id = rs.getInt("id_akun");
+                    int id_toko = rs.getInt("id_toko");
+                    String nama = rs.getString("nama");
+                    String role = rs.getString("role");
+                    String noTelpon = rs.getString("no_telpon");
+                    String namaToko = rs.getString("nama_toko");
+                    String alamatToko = rs.getString("alamat");
                     
+                    UserSession.setId(id);
+                    UserSession.setIdToko(id_toko);
                     UserSession.setUsername(username);
                     UserSession.setNama(nama);
                     UserSession.setNoTelpon(noTelpon);
-                    UserSession.setId(id);
+                    UserSession.setNamaToko(namaToko);
+                    UserSession.setAlamatToko(alamatToko);
                     
                     if (role.equals("Pembeli")) {
                         MPembeli = new MenuPembeli();
@@ -57,6 +66,9 @@ public class LoginController implements Model.Login{
                         MPenjual = new MenuPenjual();
                         MPenjual.setVisible(true);
                         this.asLogin.dispose();
+                        if (namaToko == null || alamatToko == null || namaToko.isEmpty() || alamatToko.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Lengkapi data toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                        }
                     } else if (role.equals("Admin")) {
                         MAdmin = new MenuAdmin();
                         MAdmin.setVisible(true);

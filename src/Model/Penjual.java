@@ -5,10 +5,11 @@ public class Penjual extends Akun {
     private String password;
     private String role;
     private String noTelpon;
+    private Toko toko;
 
-    public Penjual(String nama, String Username, String password, String role, String noTelpon) {
+    public Penjual(String nama, String Username, String password, String role, String noTelpon, Toko toko) {
         super(nama, Username, password, role, noTelpon);
-        this.role = "Penjual";
+        this.toko = toko;
     }
 
     public String getNama() {

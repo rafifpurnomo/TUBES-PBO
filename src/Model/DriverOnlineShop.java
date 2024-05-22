@@ -1,13 +1,19 @@
 package Model;
 
 import Controller.AkunController;
+import Controller.TokoController;
+import View.EditDataMakanan;
 import View.RegisterPembeli;
 import View.RegisterPenjual;
 import View.Login;
+import View.MenuPenjual;
+import View.SetDataToko;
+import View.UbahAlamatToko;
 import View.UbahPassword;
 import View.UbahNoTelpon;
 import View.UbahNamaUser;
 import View.UbahUsername;
+import View.UbahNamaToko;
 import javax.swing.JOptionPane;
 
 public class DriverOnlineShop {
@@ -17,8 +23,14 @@ public class DriverOnlineShop {
     private UbahNoTelpon asUbahNoTelpon;
     private UbahNamaUser asUbahNamaUser;
     private UbahUsername asUbahUsername;
+    private UbahNamaToko asUbahNamaToko;
+    private UbahAlamatToko asUbahAlamatToko;
+    private MenuPenjual asMenuPenjual;
+    private EditDataMakanan asEditDataMakanan;
+    
     private Login asLogin;
     AkunController akunCNTRL;
+    TokoController tokoCNTRL;
     
     
     public DriverOnlineShop(RegisterPembeli asRegPembeli){
@@ -45,10 +57,39 @@ public class DriverOnlineShop {
         this.asUbahNamaUser = asUbahNamaUser;
         akunCNTRL = new AkunController();
     }
+    
     public DriverOnlineShop(UbahUsername asUbahUsername){
         this.asUbahUsername = asUbahUsername;
         akunCNTRL = new AkunController();
     }
+    
+    public DriverOnlineShop(MenuPenjual asMenuPenjual){
+        this.asMenuPenjual = asMenuPenjual;
+        akunCNTRL = new AkunController();
+        tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(SetDataToko asSetDataToko){
+        this.asMenuPenjual = asMenuPenjual;
+        akunCNTRL = new AkunController();
+        tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(UbahNamaToko asUbahNamaToko){
+        this.asUbahNamaToko = asUbahNamaToko;
+        tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(UbahAlamatToko asUbahAlamatToko){
+        this.asUbahAlamatToko = asUbahAlamatToko;
+        tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(EditDataMakanan asEditDataMakanan){
+        this.asEditDataMakanan = asEditDataMakanan;
+        tokoCNTRL = new TokoController();
+    }
+    
     
     public Pembeli tambahAkunPembeli(String Nama, String Username, String Password, String role, String noTelpon){
         if (!Username.isEmpty() && !Password.isEmpty() && !Nama.isEmpty() && !noTelpon.isEmpty()) {
@@ -68,7 +109,7 @@ public class DriverOnlineShop {
     
     public Penjual tambahAkunPenjual(String Nama, String Username, String Password,  String role, String noTelpon){
         if (!Username.isEmpty() && !Password.isEmpty() && !Nama.isEmpty() && !noTelpon.isEmpty()) {
-            Penjual newPenjual = new Penjual(Nama, Username, Password, role, noTelpon);
+            Penjual newPenjual = new Penjual(Nama, Username, Password, role, noTelpon, null);
             newPenjual.setNama(Nama);
             newPenjual.setUsername(Username);
             newPenjual.setPassword(Password);
@@ -116,6 +157,7 @@ public class DriverOnlineShop {
     }
     
     public void Username(String UsernameSekarang, String UsernameBaru) {
+        
         boolean success = akunCNTRL.UbahUsername(UserSession.getId(), UsernameSekarang, UsernameBaru);
             
         if (success) {
@@ -124,7 +166,36 @@ public class DriverOnlineShop {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
-
-
-
+    
+    public Toko tambahToko(int id_akun, String namaToko, String alamat){
+        if (!namaToko.isEmpty() && !alamat.isEmpty()) {
+            Toko newToko = new Toko(id_akun, namaToko, namaToko);
+            newToko.setId_akun(id_akun);
+            newToko.setNamaToko(namaToko);
+            newToko.setAlamatToko(alamat);
+            return newToko;
+        } else {
+            return null;
+        }
+    }
+    
+    public void changeNamaToko(int id_akun, String namaBaru) {
+        boolean success = tokoCNTRL.gantiNamaToko(id_akun, namaBaru);
+            
+        if (success) {
+            JOptionPane.showMessageDialog(null, "Nama toko anda diubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void changeAlamatToko(int id_akun, String namaBaru) {
+        boolean success = tokoCNTRL.gantiAlamatToko(id_akun, namaBaru);
+            
+        if (success) {
+            JOptionPane.showMessageDialog(null, "Alamat toko anda diubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 }

@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.MakananController;
+import Model.DriverOnlineShop;
 import Model.UserSession;
 import javax.swing.JLabel;
 
@@ -17,7 +19,12 @@ public class MenuPembeli extends javax.swing.JFrame {
     /**
      * Creates new form MenuPembeli
      */
+    
+    private DriverOnlineShop driver;
+    
     public MenuPembeli() {
+        
+        
         initComponents();
         int idUser = UserSession.getId();
         
@@ -28,12 +35,8 @@ public class MenuPembeli extends javax.swing.JFrame {
         NamaUserHome.setText(namaUser);
         NamaUserProfile.setText(namaUser);
         NoTelpUserProfile.setText(noTelpon);
-        UsernameUserProfile.setText(Username);
-        
-        
-        
+        UsernameUserProfile.setText(Username);        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

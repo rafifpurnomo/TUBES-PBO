@@ -2,18 +2,29 @@ package Model;
 
 public class UserSession {
     private static int id;
+    private static int idToko;
     private static String username;
     private static String password;
     private static String nama;
     private static String role;
     private static String noTelpon;
-
+    private static String namaToko;
+    private static String alamatToko;
+    
     public static int getId() {
         return id;
     }
 
     public static void setId(int id) {
         UserSession.id = id;
+    }
+
+    public static int getIdToko() {
+        return idToko;
+    }
+
+    public static void setIdToko(int idToko) {
+        UserSession.idToko = idToko;
     }
 
     public static String getUsername() {
@@ -56,6 +67,23 @@ public class UserSession {
         UserSession.noTelpon = noTelpon;
     }
 
+    public static String getNamaToko() {
+        return namaToko;
+    }
+
+    public static void setNamaToko(String namaToko) {
+        UserSession.namaToko = namaToko;
+    }
+
+    public static String getAlamatToko() {
+        return alamatToko;
+    }
+
+    public static void setAlamatToko(String alamatToko) {
+        UserSession.alamatToko = alamatToko;
+    }
+
+    
     public static void clearSession() {
         id = 0;
         username = null;
@@ -63,6 +91,8 @@ public class UserSession {
         nama = null;
         role = null;
         noTelpon = null;
+        namaToko = null;
+        alamatToko = null;
     }
 }
 
