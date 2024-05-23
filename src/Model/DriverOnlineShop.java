@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.AkunController;
+import Controller.KeranjangController;
 import Controller.MakananController;
 import Controller.TokoController;
 import View.EditDataMakanan;
@@ -16,6 +17,7 @@ import View.UbahNoTelpon;
 import View.UbahNamaUser;
 import View.UbahUsername;
 import View.UbahNamaToko;
+import View.addToKeranjang;
 import View.tambahDataMakanan;
 import javax.swing.JOptionPane;
 
@@ -32,11 +34,13 @@ public class DriverOnlineShop {
     private EditDataMakanan asEditDataMakanan;
     private tambahDataMakanan asTambahDataMakanan;
     private MenuPembeli asMenuPembeli;
+    private addToKeranjang asAddToKeranjang;
     
-    private Login asLogin;
+    Login asLogin;
     AkunController akunCNTRL;
     TokoController tokoCNTRL;
     MakananController mknCNTRL;
+    KeranjangController keranjangCNTRL;
     
     
     public DriverOnlineShop(RegisterPembeli asRegPembeli){
@@ -106,6 +110,13 @@ public class DriverOnlineShop {
     public DriverOnlineShop(tambahDataMakanan asTambahDataMakanan){
         this.asTambahDataMakanan = asTambahDataMakanan;
         tokoCNTRL = new TokoController();
+    }
+    
+    public DriverOnlineShop(addToKeranjang asAddToKeranjang){
+        this.asAddToKeranjang = asAddToKeranjang;
+        tokoCNTRL = new TokoController();
+        keranjangCNTRL = new KeranjangController();
+        mknCNTRL = new MakananController();
     }
     
     
@@ -236,4 +247,20 @@ public class DriverOnlineShop {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    public void tambahKeranjang(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "makanan berhasil ditambahkan ke keranjang!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void cekStokAfterCO(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "stok berubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    } 
 }

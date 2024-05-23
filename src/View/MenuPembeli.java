@@ -5,11 +5,13 @@
  */
 package View;
 
+import Controller.KeranjangController;
 import Controller.MakananController;
 import Controller.TokoController;
 import Model.DriverOnlineShop;
 import Model.UserSession;
 import Model.Toko;
+import Model.Keranjang;
 import static java.awt.Frame.NORMAL;
 import static java.awt.image.ImageObserver.ERROR;
 import java.util.List;
@@ -30,12 +32,15 @@ public class MenuPembeli extends javax.swing.JFrame {
     private DriverOnlineShop driver;
     private TokoController tokoCNTRL;
     private MakananController mknCNTRL;
-    private DefaultTableModel table_model;
+    private KeranjangController keranjangCNTRL;
+    private DefaultTableModel table_model, tableModelKeranjang;
+    public double totalHargaKeranjang;
     
     public MenuPembeli() {
         driver = new DriverOnlineShop(this);
         tokoCNTRL = new TokoController();
         mknCNTRL = new MakananController();
+        keranjangCNTRL = new KeranjangController();
         
         initComponents();
         int idUser = UserSession.getId();
@@ -54,6 +59,31 @@ public class MenuPembeli extends javax.swing.JFrame {
         daftarTokoMakanan.setModel(table_model);
         
         loadToko();
+        
+        String[] judulTableKeranjang =  {"id Keranjang", "nama makanan", "jumlah pesanan", "harga"};
+        tableModelKeranjang = new DefaultTableModel(judulTableKeranjang, 0);
+        TableKeranjang.setModel(tableModelKeranjang);
+        
+        loadKeranjang(UserSession.getId());
+        totalKeranjangDisplay.setText(String.valueOf(totalHargaKeranjang));
+        
+    }
+    
+    private void loadKeranjang(int idUser){
+        List<Keranjang> dataKeranjang = keranjangCNTRL.getKeranjangByAkun(idUser);
+        
+        for(Keranjang keranjang : dataKeranjang){
+            Object[] rowDataKeranjang = {
+                keranjang.getId_keranjang(),
+                keranjang.getNama_makanan(),
+                keranjang.getBanyak_makanan(),
+                keranjang.getTotal_harga()
+            };
+            tableModelKeranjang.addRow(rowDataKeranjang);
+            totalHargaKeranjang = totalHargaKeranjang + keranjang.getTotal_harga();
+        }
+        
+        
     }
     
     private void loadToko(){
@@ -90,6 +120,13 @@ public class MenuPembeli extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         updateDaftarTokoBTN = new javax.swing.JButton();
         KeranjangPembeli = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableKeranjang = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        totalKeranjangDisplay = new javax.swing.JLabel();
+        refreshBTN = new javax.swing.JButton();
         ProfilePembeli = new javax.swing.JPanel();
         LogoutBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -131,6 +168,11 @@ public class MenuPembeli extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        daftarTokoMakanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daftarTokoMakananMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(daftarTokoMakanan);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -198,15 +240,76 @@ public class MenuPembeli extends javax.swing.JFrame {
 
         MenuPembeli.addTab("Home", HomePembeli);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("menampilkan keranjang kamu");
+
+        jLabel7.setText("Ayo checkout sebelum kehabisan");
+
+        TableKeranjang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TableKeranjang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableKeranjangMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TableKeranjang);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Total keranjang kamu");
+
+        totalKeranjangDisplay.setText("total keranjang");
+
+        refreshBTN.setText("refresh");
+        refreshBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout KeranjangPembeliLayout = new javax.swing.GroupLayout(KeranjangPembeli);
         KeranjangPembeli.setLayout(KeranjangPembeliLayout);
         KeranjangPembeliLayout.setHorizontalGroup(
             KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 811, Short.MAX_VALUE)
+            .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addGroup(KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(totalKeranjangDisplay)
+                            .addComponent(refreshBTN))))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         KeranjangPembeliLayout.setVerticalGroup(
             KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(KeranjangPembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(KeranjangPembeliLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalKeranjangDisplay)
+                        .addGap(18, 18, 18)
+                        .addComponent(refreshBTN)))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         MenuPembeli.addTab("Keranjang", KeranjangPembeli);
@@ -396,6 +499,35 @@ public class MenuPembeli extends javax.swing.JFrame {
         loadToko();
     }//GEN-LAST:event_updateDaftarTokoBTNActionPerformed
 
+    private void daftarTokoMakananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarTokoMakananMouseClicked
+        int selectedRow = daftarTokoMakanan.getSelectedRow();
+        if (selectedRow != -1) {
+            int idToko = (int) table_model.getValueAt(selectedRow, 0);
+            String namaToko = table_model.getValueAt(selectedRow, 1).toString();
+            String alamat = table_model.getValueAt(selectedRow, 2).toString();
+            
+            DetailToko detailtoko = new DetailToko();
+            detailtoko.DetailToko(idToko, namaToko, alamat);
+            detailtoko.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_daftarTokoMakananMouseClicked
+
+    private void refreshBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBTNActionPerformed
+        TableKeranjang.removeAll();
+        int rows = tableModelKeranjang.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            tableModelKeranjang.removeRow(i);
+        }
+        
+        loadKeranjang(UserSession.getId());
+        totalKeranjangDisplay.setText(String.valueOf(totalHargaKeranjang));
+    }//GEN-LAST:event_refreshBTNActionPerformed
+
+    private void TableKeranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableKeranjangMouseClicked
+        
+    }//GEN-LAST:event_TableKeranjangMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +573,7 @@ public class MenuPembeli extends javax.swing.JFrame {
     private javax.swing.JLabel NoTelpUserProfile;
     private javax.swing.JPanel ProfilePembeli;
     private javax.swing.JLabel SelamatDatang;
+    private javax.swing.JTable TableKeranjang;
     private javax.swing.JButton UbahNama;
     private javax.swing.JButton UbahNoTelpon;
     private javax.swing.JButton UbahPassword;
@@ -453,8 +586,14 @@ public class MenuPembeli extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton refreshBTN;
+    private javax.swing.JLabel totalKeranjangDisplay;
     private javax.swing.JButton updateDaftarTokoBTN;
     // End of variables declaration//GEN-END:variables
 }

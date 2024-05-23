@@ -72,6 +72,25 @@ public class MakananController {
         }
     }
     
+    public boolean updateStokMakanan(int idMakanan, int banyakPorsi){
+        String sql = "UPDATE makanan SET stok=? WHERE id_makanan=?";
+
+        try (Connection conn = ConfigDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setInt(1, banyakPorsi);
+            stmt.setInt(2, idMakanan);
+            
+
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(DriverOnlineShop.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
+    }
+    
     public boolean hapusMakanan(int id_makanan){
         String sql = "DELETE FROM makanan WHERE id_makanan = ?";
     
