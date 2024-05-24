@@ -26,38 +26,45 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="stokMakananDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="kembaliBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="namaTokoDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="kembaliBTN" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="namaTokoDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="alamatTokoDisplay" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tambahMakanan" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="alamatTokoDisplay" min="-2" pref="195" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="393" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jlabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="namaMakananDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="hargaMakananDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tambahMakanan" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlabel4" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalHargaMakananDisplay" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jSpinner1" min="-2" pref="157" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="loadTotalHarga" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="namaMakananDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="hargaMakananDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalHargaMakananDisplay" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jSpinner1" min="-2" pref="157" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="loadTotalHarga" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,33 +84,32 @@
                   <Component id="alamatTokoDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-              <Component id="jlabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="namaMakananDisplay" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jlabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="namaMakananDisplay" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jlabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="hargaMakananDisplay" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jlabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="loadTotalHarga" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jlabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="totalHargaMakananDisplay" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="tambahMakanan" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="stokMakananDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="loadTotalHarga" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="hargaMakananDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalHargaMakananDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
-              <Component id="tambahMakanan" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace min="82" pref="168" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,19 +160,6 @@
     <Component class="javax.swing.JLabel" name="namaMakananDisplay">
       <Properties>
         <Property name="text" type="java.lang.String" value="namaMakananDisplay"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Stok"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="stokMakananDisplay">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Stok makanan"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlabel2">

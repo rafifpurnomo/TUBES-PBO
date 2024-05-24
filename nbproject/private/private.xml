@@ -6,12 +6,14 @@
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Controller/MakananController.java</file>
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Controller/AkunController.java</file>
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/View/MenuPembeli.java</file>
+            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Controller/TransaksiController.java</file>
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Model/DriverOnlineShop.java</file>
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/View/MenuPenjual.java</file>
-            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Model/Keranjang.java</file>
             <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Controller/KeranjangController.java</file>
-            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/View/addToKeranjang.java</file>
-            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/View/DetailToko.java</file>
+            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Model/Transaksi.java</file>
+            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/View/Checkout.java</file>
+            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Controller/LoginController.java</file>
+            <file>file:/C:/Users/Rafif%20Purnomo/OneDrive/Documents/Coding/Java/TUBES-PBO/src/Helper/ConfigDB.java</file>
         </group>
     </open-files>
 </project-private>

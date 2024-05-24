@@ -39,10 +39,9 @@ public class MakananController {
                     int idMakanan = rs.getInt("id_makanan");
                     int idToko = rs.getInt("id_toko");
                     String namaMakanan = rs.getString("nama_makanan");
-                    int stok = rs.getInt("stok");
                     double harga = rs.getDouble("harga");
 
-                    Makanan makanan = new Makanan(idMakanan, idToko, namaMakanan, stok, harga);
+                    Makanan makanan = new Makanan(idMakanan, idToko, namaMakanan, harga);
                     makananList.add(makanan);
                 }
             }
@@ -52,16 +51,15 @@ public class MakananController {
         return makananList;
     }
     
-    public boolean updateMakanan(int id_makanan, String namaMakanan, double harga, int stok){
-        String sql = "UPDATE makanan SET nama_makanan=?, harga=?, stok=? WHERE id_makanan=?";
+    public boolean updateMakanan(int id_makanan, String namaMakanan, double harga){
+        String sql = "UPDATE makanan SET nama_makanan=?, harga=? WHERE id_makanan=?";
 
         try (Connection conn = ConfigDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, namaMakanan);
             stmt.setDouble(2, harga);
-            stmt.setInt(3, stok);
-            stmt.setInt(4, id_makanan);
+            stmt.setInt(3, id_makanan);
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
@@ -71,26 +69,7 @@ public class MakananController {
             return false;
         }
     }
-    
-    public boolean updateStokMakanan(int idMakanan, int banyakPorsi){
-        String sql = "UPDATE makanan SET stok=? WHERE id_makanan=?";
 
-        try (Connection conn = ConfigDB.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setInt(1, banyakPorsi);
-            stmt.setInt(2, idMakanan);
-            
-
-            int rowsUpdated = stmt.executeUpdate();
-            return rowsUpdated > 0;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(DriverOnlineShop.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        }
-    }
-    
     public boolean hapusMakanan(int id_makanan){
         String sql = "DELETE FROM makanan WHERE id_makanan = ?";
     
@@ -108,15 +87,14 @@ public class MakananController {
         }        
     }
     
-    public boolean tambahMakanan(int id_toko, String namaMakanan, double harga, int stok){
-        String sql = "INSERT INTO makanan (id_toko, nama_makanan, harga, stok) VALUES (?, ?, ?, ?)";
+    public boolean tambahMakanan(int id_toko, String namaMakanan, double harga){
+        String sql = "INSERT INTO makanan (id_toko, nama_makanan, harga) VALUES (?, ?, ?)";
         
         try (Connection conn = ConfigDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id_toko);
             stmt.setString(2, namaMakanan);
             stmt.setDouble(3, harga);
-            stmt.setInt(4, stok);
 
             stmt.executeUpdate();
             return true;

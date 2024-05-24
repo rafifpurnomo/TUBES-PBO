@@ -48,7 +48,7 @@ public class MenuPenjual extends javax.swing.JFrame {
         NamaTokoProfile.setText(UserSession.getNamaToko());
         AlamatTokoProfile.setText(UserSession.getAlamatToko());
         
-        String[] judulTable = {"id makanan","nama makanan", "stok", "harga"};
+        String[] judulTable = {"id makanan","nama makanan", "harga"};
         table_model = new DefaultTableModel(judulTable, 0);
         TableDaftarProduk.setModel(table_model);
         
@@ -63,7 +63,6 @@ public class MenuPenjual extends javax.swing.JFrame {
             Object[] rowData = {
                 makanan.getId_makanan(),
                 makanan.getNamaBarang(),
-                makanan.getStok(),
                 makanan.getHarga()
         };
         table_model.addRow(rowData);
@@ -413,51 +412,14 @@ public class MenuPenjual extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
-        UserSession.clearSession();
-        
-        Login LoginScreen = new Login();
-        LoginScreen.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_LogoutBTNActionPerformed
-
-    private void UbahNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaActionPerformed
-        UbahNamaUser changeName = new UbahNamaUser();
-        changeName.setVisible(true);
-    }//GEN-LAST:event_UbahNamaActionPerformed
-
-    private void UbahNoTelponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNoTelponActionPerformed
-        UbahNoTelpon changeNoTelpon = new UbahNoTelpon();
-        changeNoTelpon.setVisible(true);
-    }//GEN-LAST:event_UbahNoTelponActionPerformed
-
-    private void UbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahPasswordActionPerformed
-        UbahPassword changePassword = new UbahPassword();
-        changePassword.setVisible(true);
-    }//GEN-LAST:event_UbahPasswordActionPerformed
-
-    private void UbahUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahUsernameActionPerformed
-        UbahUsername changeUsername = new UbahUsername();
-        changeUsername.setVisible(true);
-    }//GEN-LAST:event_UbahUsernameActionPerformed
-
-    private void UbahNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaTokoActionPerformed
-        if (UserSession.getNamaToko() != null && !UserSession.getNamaToko().isEmpty()) {
-            UbahNamaToko newUbahNamaToko = new UbahNamaToko();
-            newUbahNamaToko.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Anda belum mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_UbahNamaTokoActionPerformed
-
-    private void SetNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetNamaTokoActionPerformed
+    private void SetAlamatTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAlamatTokoActionPerformed
         if (UserSession.getNamaToko() == null || UserSession.getNamaToko().isEmpty()) {
             SetDataToko newDataToko = new SetDataToko();
             newDataToko.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Anda sudah mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_SetNamaTokoActionPerformed
+    }//GEN-LAST:event_SetAlamatTokoActionPerformed
 
     private void UbahAlamatTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahAlamatTokoActionPerformed
         if (UserSession.getNamaToko() != null && !UserSession.getNamaToko().isEmpty()) {
@@ -468,14 +430,65 @@ public class MenuPenjual extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UbahAlamatTokoActionPerformed
 
-    private void SetAlamatTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAlamatTokoActionPerformed
+    private void SetNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetNamaTokoActionPerformed
         if (UserSession.getNamaToko() == null || UserSession.getNamaToko().isEmpty()) {
             SetDataToko newDataToko = new SetDataToko();
             newDataToko.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Anda sudah mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_SetAlamatTokoActionPerformed
+    }//GEN-LAST:event_SetNamaTokoActionPerformed
+
+    private void UbahNamaTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaTokoActionPerformed
+        if (UserSession.getNamaToko() != null && !UserSession.getNamaToko().isEmpty()) {
+            UbahNamaToko newUbahNamaToko = new UbahNamaToko();
+            newUbahNamaToko.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda belum mendaftarkan toko anda", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_UbahNamaTokoActionPerformed
+
+    private void UbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahPasswordActionPerformed
+        UbahPassword changePassword = new UbahPassword();
+        changePassword.setVisible(true);
+    }//GEN-LAST:event_UbahPasswordActionPerformed
+
+    private void UbahNoTelponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNoTelponActionPerformed
+        UbahNoTelpon changeNoTelpon = new UbahNoTelpon();
+        changeNoTelpon.setVisible(true);
+    }//GEN-LAST:event_UbahNoTelponActionPerformed
+
+    private void UbahUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahUsernameActionPerformed
+        UbahUsername changeUsername = new UbahUsername();
+        changeUsername.setVisible(true);
+    }//GEN-LAST:event_UbahUsernameActionPerformed
+
+    private void UbahNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaActionPerformed
+        UbahNamaUser changeName = new UbahNamaUser();
+        changeName.setVisible(true);
+    }//GEN-LAST:event_UbahNamaActionPerformed
+
+    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
+        UserSession.clearSession();
+
+        Login LoginScreen = new Login();
+        LoginScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoutBTNActionPerformed
+
+    private void updateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDataActionPerformed
+        TableDaftarProduk.removeAll();
+        int rows = table_model.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            table_model.removeRow(i);
+        }
+        loadDataMakanan();
+    }//GEN-LAST:event_updateDataActionPerformed
+
+    private void tambahMakananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahMakananActionPerformed
+        tambahDataMakanan tmbhMakanan = new tambahDataMakanan();
+        tmbhMakanan.setVisible(true);
+    }//GEN-LAST:event_tambahMakananActionPerformed
 
     private void TableDaftarProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableDaftarProdukMouseClicked
         int selectedRow = TableDaftarProduk.getSelectedRow();
@@ -490,20 +503,6 @@ public class MenuPenjual extends javax.swing.JFrame {
             editForm.setVisible(true);
         }
     }//GEN-LAST:event_TableDaftarProdukMouseClicked
-
-    private void tambahMakananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahMakananActionPerformed
-        tambahDataMakanan tmbhMakanan = new tambahDataMakanan();
-        tmbhMakanan.setVisible(true);
-    }//GEN-LAST:event_tambahMakananActionPerformed
-
-    private void updateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDataActionPerformed
-        TableDaftarProduk.removeAll();
-        int rows = table_model.getRowCount();
-        for (int i = rows - 1; i >= 0; i--) {
-            table_model.removeRow(i);
-        }
-        loadDataMakanan();
-    }//GEN-LAST:event_updateDataActionPerformed
 
     /**
      * @param args the command line arguments

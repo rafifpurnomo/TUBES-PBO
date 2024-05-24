@@ -26,7 +26,7 @@ public class DetailToko extends javax.swing.JFrame {
         mknCNTRL = new MakananController();
         initComponents();
         
-        String[] judulTable = {"id makanan","nama makanan", "stok", "harga"};
+        String[] judulTable = {"id makanan","nama makanan", "harga"};
         table_model = new DefaultTableModel(judulTable, 0);
         tableMakanan.setModel(table_model);
     }
@@ -49,7 +49,6 @@ public class DetailToko extends javax.swing.JFrame {
             Object[] rowData = {
                 makanan.getId_makanan(),
                 makanan.getNamaBarang(),
-                makanan.getStok(),
                 makanan.getHarga()
         };
         table_model.addRow(rowData);
@@ -162,11 +161,10 @@ public class DetailToko extends javax.swing.JFrame {
         if (selectedRow != -1) {
             int idMakanan = (int) table_model.getValueAt(selectedRow, 0);
             String namaMakanan = table_model.getValueAt(selectedRow, 1).toString();
-            int stok = (int) table_model.getValueAt(selectedRow, 2);
-            double harga = Double.parseDouble(table_model.getValueAt(selectedRow, 3).toString());
+            double harga = Double.parseDouble(table_model.getValueAt(selectedRow, 2).toString());
             
             addToKeranjang addkeranjang = new addToKeranjang();
-            addkeranjang.addToKeranjang(namaToko, alamat, idMakanan, namaMakanan, stok, harga);
+            addkeranjang.addToKeranjang(namaToko, alamat, idMakanan, namaMakanan, harga);
             addkeranjang.setVisible(true);
         }
     }//GEN-LAST:event_tableMakananMouseClicked

@@ -29,8 +29,6 @@
                   <Component id="BackBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stokMakananInput" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="HargaMakananInput" alignment="0" pref="141" max="32767" attributes="0"/>
                       <Component id="NamaMakananInput" alignment="0" max="32767" attributes="0"/>
@@ -58,12 +56,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="HargaMakananInput" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="stokMakananInput" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="tambahDataMakananBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="185" max="32767" attributes="0"/>
+              <EmptySpace pref="248" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,13 +95,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="HargaMakananInput">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Stok makanan:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JSpinner" name="stokMakananInput">
     </Component>
     <Component class="javax.swing.JButton" name="tambahDataMakananBTN">
       <Properties>

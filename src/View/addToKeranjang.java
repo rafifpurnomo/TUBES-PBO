@@ -18,7 +18,7 @@ public class addToKeranjang extends javax.swing.JFrame {
     private MakananController mknCNTRL;
     private KeranjangController keranjangCNTRL;
     private DefaultTableModel table_model;
-    public int idToko, stok, idMakanan, totalPorsi;
+    public int idToko, idMakanan, totalPorsi;
     public String namaToko, alamat, namaMakanan;
     public double harga, totalHarga;
     
@@ -33,18 +33,16 @@ public class addToKeranjang extends javax.swing.JFrame {
         
     }
     
-    public void addToKeranjang(String namaToko, String alamat, int idMakanan,String namaMakanan, int stok, double harga){
+    public void addToKeranjang(String namaToko, String alamat, int idMakanan,String namaMakanan, double harga){
         this.namaToko = namaToko;
         this.alamat = alamat;
         this.idMakanan = idMakanan;
         this.namaMakanan = namaMakanan;
-        this.stok = stok;
         this.harga = harga;
         
         namaTokoDisplay.setText(namaToko);
         alamatTokoDisplay.setText(alamat);
         namaMakananDisplay.setText(namaMakanan);
-        stokMakananDisplay.setText(String.valueOf(stok));
         hargaMakananDisplay.setText(String.valueOf(harga));
         
         totalHargaMakananDisplay.setText("");
@@ -66,8 +64,6 @@ public class addToKeranjang extends javax.swing.JFrame {
         kembaliBTN = new javax.swing.JButton();
         jlabel = new javax.swing.JLabel();
         namaMakananDisplay = new javax.swing.JLabel();
-        jlabel1 = new javax.swing.JLabel();
-        stokMakananDisplay = new javax.swing.JLabel();
         jlabel2 = new javax.swing.JLabel();
         hargaMakananDisplay = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
@@ -100,11 +96,6 @@ public class addToKeranjang extends javax.swing.JFrame {
         jlabel.setText("Nama Makanan");
 
         namaMakananDisplay.setText("namaMakananDisplay");
-
-        jlabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jlabel1.setText("Stok");
-
-        stokMakananDisplay.setText("Stok makanan");
 
         jlabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlabel2.setText("Harga Makanan");
@@ -140,32 +131,35 @@ public class addToKeranjang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stokMakananDisplay)
-                    .addComponent(kembaliBTN)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(namaTokoDisplay))
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alamatTokoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addComponent(jlabel)
-                    .addComponent(namaMakananDisplay)
-                    .addComponent(jlabel1)
-                    .addComponent(jlabel2)
-                    .addComponent(hargaMakananDisplay)
-                    .addComponent(tambahMakanan, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlabel4)
-                    .addComponent(totalHargaMakananDisplay)
-                    .addComponent(jlabel3)
+                            .addComponent(kembaliBTN)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(namaTokoDisplay))
+                                .addGap(75, 75, 75)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(alamatTokoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(tambahMakanan))))
+                        .addContainerGap(393, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(loadTotalHarga)))
-                .addGap(100, 100, 100))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlabel)
+                            .addComponent(namaMakananDisplay)
+                            .addComponent(jlabel2)
+                            .addComponent(hargaMakananDisplay))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlabel4)
+                            .addComponent(totalHargaMakananDisplay)
+                            .addComponent(jlabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(loadTotalHarga)))
+                        .addGap(144, 144, 144))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,29 +175,28 @@ public class addToKeranjang extends javax.swing.JFrame {
                     .addComponent(namaTokoDisplay)
                     .addComponent(alamatTokoDisplay))
                 .addGap(66, 66, 66)
-                .addComponent(jlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaMakananDisplay)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlabel1)
-                    .addComponent(jlabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stokMakananDisplay)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadTotalHarga))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlabel2)
-                    .addComponent(jlabel3))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hargaMakananDisplay)
-                    .addComponent(totalHargaMakananDisplay))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(tambahMakanan)
-                .addGap(82, 82, 82))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(namaMakananDisplay)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlabel2)
+                        .addGap(10, 10, 10)
+                        .addComponent(hargaMakananDisplay))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loadTotalHarga))
+                        .addGap(18, 18, 18)
+                        .addComponent(jlabel3)
+                        .addGap(10, 10, 10)
+                        .addComponent(totalHargaMakananDisplay)
+                        .addGap(21, 21, 21)
+                        .addComponent(tambahMakanan)))
+                .addGap(82, 168, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,8 +214,6 @@ public class addToKeranjang extends javax.swing.JFrame {
 
     private void tambahMakananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahMakananActionPerformed
         boolean status = keranjangCNTRL.tambahKeranjang(UserSession.getId(), idMakanan, namaMakanan, totalPorsi, totalHarga);
-        int stokSekarang = stok - totalPorsi;
-        boolean cek = mknCNTRL.updateStokMakanan(idMakanan, stokSekarang);
         driver.tambahKeranjang(status);
        
     }//GEN-LAST:event_tambahMakananActionPerformed
@@ -270,7 +261,6 @@ public class addToKeranjang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel jlabel;
-    private javax.swing.JLabel jlabel1;
     private javax.swing.JLabel jlabel2;
     private javax.swing.JLabel jlabel3;
     private javax.swing.JLabel jlabel4;
@@ -278,7 +268,6 @@ public class addToKeranjang extends javax.swing.JFrame {
     private javax.swing.JButton loadTotalHarga;
     private javax.swing.JLabel namaMakananDisplay;
     private javax.swing.JLabel namaTokoDisplay;
-    private javax.swing.JLabel stokMakananDisplay;
     private javax.swing.JButton tambahMakanan;
     private javax.swing.JLabel totalHargaMakananDisplay;
     // End of variables declaration//GEN-END:variables

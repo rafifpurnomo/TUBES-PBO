@@ -63,4 +63,21 @@ public class KeranjangController {
             return false;
         }
     }
+    
+    public boolean hapusKeranjang(int id_keranjang){
+        String sql = "DELETE FROM keranjang WHERE id_keranjang= ?";
+    
+        try (Connection conn = ConfigDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id_keranjang);
+
+            int rowsDeleted = stmt.executeUpdate();
+            return rowsDeleted > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(DriverOnlineShop.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
+    }
 }

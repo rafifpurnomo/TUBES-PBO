@@ -46,8 +46,6 @@ public class tambahDataMakanan extends javax.swing.JFrame {
         NamaMakananInput = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         HargaMakananInput = new javax.swing.JSpinner();
-        jLabel8 = new javax.swing.JLabel();
-        stokMakananInput = new javax.swing.JSpinner();
         tambahDataMakananBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,8 +70,6 @@ public class tambahDataMakanan extends javax.swing.JFrame {
 
         jLabel7.setText("Harga makanan:");
 
-        jLabel8.setText("Stok makanan:");
-
         tambahDataMakananBTN.setText("tambah data makanan");
         tambahDataMakananBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +87,6 @@ public class tambahDataMakanan extends javax.swing.JFrame {
                     .addComponent(BackBTN)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(stokMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(HargaMakananInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                         .addComponent(NamaMakananInput, javax.swing.GroupLayout.Alignment.LEADING))
@@ -116,12 +110,8 @@ public class tambahDataMakanan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HargaMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stokMakananInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(tambahDataMakananBTN)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,10 +128,9 @@ public class tambahDataMakanan extends javax.swing.JFrame {
     private void tambahDataMakananBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahDataMakananBTNActionPerformed
 
         String newNamaMakanan = NamaMakananInput.getText();
-        int stokMakanan = (int) stokMakananInput.getValue();
         double harga = ((Number) HargaMakananInput.getValue()).doubleValue();
         
-        boolean status = mknnCNTRL.tambahMakanan(UserSession.getIdToko(),newNamaMakanan, harga, stokMakanan);
+        boolean status = mknnCNTRL.tambahMakanan(UserSession.getIdToko(),newNamaMakanan, harga);
         driver.tambahMakanan(status);
     }//GEN-LAST:event_tambahDataMakananBTNActionPerformed
 
@@ -202,8 +191,6 @@ public class tambahDataMakanan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JSpinner stokMakananInput;
     private javax.swing.JButton tambahDataMakananBTN;
     // End of variables declaration//GEN-END:variables
 }

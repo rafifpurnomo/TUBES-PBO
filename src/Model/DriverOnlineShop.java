@@ -4,6 +4,7 @@ import Controller.AkunController;
 import Controller.KeranjangController;
 import Controller.MakananController;
 import Controller.TokoController;
+import View.Checkout;
 import View.EditDataMakanan;
 import View.RegisterPembeli;
 import View.RegisterPenjual;
@@ -35,6 +36,7 @@ public class DriverOnlineShop {
     private tambahDataMakanan asTambahDataMakanan;
     private MenuPembeli asMenuPembeli;
     private addToKeranjang asAddToKeranjang;
+    private Checkout asCheckout;
     
     Login asLogin;
     AkunController akunCNTRL;
@@ -114,6 +116,13 @@ public class DriverOnlineShop {
     
     public DriverOnlineShop(addToKeranjang asAddToKeranjang){
         this.asAddToKeranjang = asAddToKeranjang;
+        tokoCNTRL = new TokoController();
+        keranjangCNTRL = new KeranjangController();
+        mknCNTRL = new MakananController();
+    }
+    
+    public DriverOnlineShop(Checkout asCheckout){
+        this.asCheckout = asCheckout;
         tokoCNTRL = new TokoController();
         keranjangCNTRL = new KeranjangController();
         mknCNTRL = new MakananController();
@@ -256,11 +265,19 @@ public class DriverOnlineShop {
         }
     }
     
-    public void cekStokAfterCO(boolean status){
+    public void statusCheckoutBerhasil(boolean status){
         if (status) {
-            JOptionPane.showMessageDialog(null, "stok berubah!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "transaksi berhail!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
-    } 
+    }
+    
+    public void statusCheckoutDiBatalkan(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "transaksi dibatalkan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 }

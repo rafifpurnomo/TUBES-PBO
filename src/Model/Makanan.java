@@ -5,14 +5,12 @@ public class Makanan {
     private int id_toko;
     private String namaBarang;
     private double harga;
-    private int stok;
 
-    public Makanan(int id_makanan, int id_toko, String namaBarang, int stok, double harga) {
+    public Makanan(int id_makanan, int id_toko, String namaBarang, double harga) {
         this.id_makanan = id_makanan;
         this.id_toko = id_toko;
         this.namaBarang = namaBarang;
         this.harga = harga;
-        this.stok = stok;
     }
 
     public int getId_makanan() {
@@ -45,17 +43,5 @@ public class Makanan {
 
     public void setHarga(double harga) {
         this.harga = harga;
-    }
-
-    public int getStok() {
-        return stok;
-    }
-
-    public void setStok(int stok) {
-        this.stok = stok;
-    }
-    
-    
-    
-    
+    }   
 }
