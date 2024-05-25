@@ -5,13 +5,17 @@ import Controller.KeranjangController;
 import Controller.MakananController;
 import Controller.TokoController;
 import View.Checkout;
+import View.DeletePembeli;
+import View.DeletePenjual;
 import View.EditDataMakanan;
 import View.RegisterPembeli;
 import View.RegisterPenjual;
 import View.Login;
+import View.MenuAdmin;
 import View.MenuPembeli;
 import View.MenuPenjual;
 import View.SetDataToko;
+import View.TambahAdminBaru;
 import View.UbahAlamatToko;
 import View.UbahPassword;
 import View.UbahNoTelpon;
@@ -35,8 +39,13 @@ public class DriverOnlineShop {
     private EditDataMakanan asEditDataMakanan;
     private tambahDataMakanan asTambahDataMakanan;
     private MenuPembeli asMenuPembeli;
+    private MenuAdmin asMenuAdmin;
+    private TambahAdminBaru asTambahAdminBaru;
     private addToKeranjang asAddToKeranjang;
     private Checkout asCheckout;
+    private DeletePembeli asDeletePembeli;
+    private SetDataToko asSetDataToko;
+    private DeletePenjual asDeletePenjual;
     
     Login asLogin;
     AkunController akunCNTRL;
@@ -45,53 +54,41 @@ public class DriverOnlineShop {
     KeranjangController keranjangCNTRL;
     
     
+    
     public DriverOnlineShop(RegisterPembeli asRegPembeli){
         this.asRegPembeli = asRegPembeli;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(RegisterPenjual asRegPenjual){
         this.asRegPenjual = asRegPenjual;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(UbahPassword asUbahPassword){
         this.asUbahPassword = asUbahPassword;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(UbahNoTelpon asUbahNoTelpon){
         this.asUbahNoTelpon = asUbahNoTelpon;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(UbahNamaUser asUbahNamaUser){
         this.asUbahNamaUser = asUbahNamaUser;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(UbahUsername asUbahUsername){
         this.asUbahUsername = asUbahUsername;
-        akunCNTRL = new AkunController();
     }
     
     public DriverOnlineShop(MenuPenjual asMenuPenjual){
         this.asMenuPenjual = asMenuPenjual;
-        akunCNTRL = new AkunController();
-        tokoCNTRL = new TokoController();
     }
     
     public DriverOnlineShop(MenuPembeli asMenuPembeli){
         this.asMenuPembeli = asMenuPembeli;
-        akunCNTRL = new AkunController();
-        tokoCNTRL = new TokoController();
-        mknCNTRL = new MakananController();
     }
     
     public DriverOnlineShop(SetDataToko asSetDataToko){
-        this.asMenuPenjual = asMenuPenjual;
-        akunCNTRL = new AkunController();
-        tokoCNTRL = new TokoController();
+        this.asSetDataToko = asSetDataToko;
     }
     
     public DriverOnlineShop(UbahNamaToko asUbahNamaToko){
@@ -111,55 +108,50 @@ public class DriverOnlineShop {
     
     public DriverOnlineShop(tambahDataMakanan asTambahDataMakanan){
         this.asTambahDataMakanan = asTambahDataMakanan;
-        tokoCNTRL = new TokoController();
     }
     
     public DriverOnlineShop(addToKeranjang asAddToKeranjang){
         this.asAddToKeranjang = asAddToKeranjang;
-        tokoCNTRL = new TokoController();
-        keranjangCNTRL = new KeranjangController();
-        mknCNTRL = new MakananController();
     }
     
     public DriverOnlineShop(Checkout asCheckout){
         this.asCheckout = asCheckout;
-        tokoCNTRL = new TokoController();
-        keranjangCNTRL = new KeranjangController();
-        mknCNTRL = new MakananController();
     }
     
+    public DriverOnlineShop(MenuAdmin asMenuAdmin){
+        this.asMenuAdmin = asMenuAdmin;
+    }
     
-    public Pembeli tambahAkunPembeli(String Nama, String Username, String Password, String role, String noTelpon){
-        if (!Username.isEmpty() && !Password.isEmpty() && !Nama.isEmpty() && !noTelpon.isEmpty()) {
-            Pembeli newPembeli = new Pembeli(Nama, Username, Password, role, noTelpon);
-            newPembeli.setNama(Nama);
-            newPembeli.setUsername(Username);
-            newPembeli.setPassword(Password);
-            newPembeli.setRole(role);
-            newPembeli.setNoTelpon(noTelpon);
-            return newPembeli;
-            
+    public DriverOnlineShop(TambahAdminBaru asTambahAdminBaru){
+        this.asTambahAdminBaru = asTambahAdminBaru;
+    }
+    
+    public DriverOnlineShop(DeletePembeli asDeletePembeli){
+        this.asDeletePembeli = asDeletePembeli;
+    }
+    
+    public DriverOnlineShop(DeletePenjual asDeletePenjual){
+        this.asDeletePenjual = asDeletePenjual;
+    }
+    
+    public void statusTambahAdmin(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "admin baru berhasil ditambahkan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         } else {
-          return null;
-            
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
     
-    public Penjual tambahAkunPenjual(String Nama, String Username, String Password,  String role, String noTelpon){
-        if (!Username.isEmpty() && !Password.isEmpty() && !Nama.isEmpty() && !noTelpon.isEmpty()) {
-            Penjual newPenjual = new Penjual(Nama, Username, Password, role, noTelpon, null);
-            newPenjual.setNama(Nama);
-            newPenjual.setUsername(Username);
-            newPenjual.setPassword(Password);
-            newPenjual.setRole(role);
-            newPenjual.setNoTelpon(noTelpon);
-            return newPenjual;
-            
+    public void statusTambahAkun(boolean status){
+        if (status) {
+            JOptionPane.showMessageDialog(null, "akun berhasil di buat!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         } else {
-          return null;
-            
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    
+
     
     public void changePassword(String oldPassword, String newPassword, String confirmPassword) {
         if (newPassword.equals(confirmPassword)) {
@@ -280,4 +272,13 @@ public class DriverOnlineShop {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    public void statusDeletAkun(boolean status) {
+        if (status) {
+            JOptionPane.showMessageDialog(null, "akun berhasil di hapus!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan pada server!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
 }

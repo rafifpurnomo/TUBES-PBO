@@ -1,5 +1,6 @@
 package Model;
 public class Penjual extends Akun {
+    private int idAkun;
     private String nama;
     private String Username;
     private String password;
@@ -7,11 +8,25 @@ public class Penjual extends Akun {
     private String noTelpon;
     private Toko toko;
 
-    public Penjual(String nama, String Username, String password, String role, String noTelpon, Toko toko) {
-        super(nama, Username, password, role, noTelpon);
+    public Penjual(int idAkun, String nama, String Username, String password, String role, String noTelpon) {
+        super(idAkun, nama, Username, password, role, noTelpon);
+        this.idAkun = idAkun;
+        this.nama = nama;
+        this.Username = Username;
+        this.password = password;
+        this.role = role;
+        this.noTelpon = noTelpon;
         this.toko = toko;
     }
 
+    public int getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+    }
+    
     public String getNama() {
         return nama;
     }
@@ -41,7 +56,7 @@ public class Penjual extends Akun {
     }
 
     public void setRole(String role) {
-        this.role = "Penjual";
+        this.role = role;
     }
 
     public String getNoTelpon() {
@@ -50,5 +65,13 @@ public class Penjual extends Akun {
 
     public void setNoTelpon(String noTelpon) {
         this.noTelpon = noTelpon;
+    }
+
+    public Toko getToko() {
+        return toko;
+    }
+
+    public void setToko(Toko toko) {
+        this.toko = toko;
     }
 }

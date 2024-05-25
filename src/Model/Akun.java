@@ -1,18 +1,28 @@
 package Model;
 
 public abstract class Akun {
+    private int idAkun;
     private String nama;
     private String Username;
     private String password;
     private String role;
     private String noTelpon;
 
-    public Akun(String nama, String Username, String password, String role, String noTelpon) {
+    public Akun(int idAkun, String nama, String Username, String password, String role, String noTelpon) {
+        this.idAkun = idAkun;
         this.nama = nama;
         this.Username = Username;
         this.password = password;
         this.role = role;
         this.noTelpon = noTelpon;
+    }
+
+    public int getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
     }
 
     public String getNama() {

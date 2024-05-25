@@ -1,15 +1,31 @@
 package Model;
 public class Pembeli extends Akun {
+    private int idAkun;
     private String nama;
     private String Username;
     private String password;
     private String role;
     private String noTelpon;
 
-    public Pembeli(String nama, String Username, String password, String role, String noTelpon) {
-        super(nama, Username, password, role, noTelpon);
+    public Pembeli(int idAkun, String nama, String Username, String password, String role, String noTelpon) {
+        super(idAkun, nama, Username, password, role, noTelpon);
+        this.idAkun = idAkun;
+        this.nama = nama;
+        this.Username = Username;
+        this.password = password;
+        this.role = role;
+        this.noTelpon = noTelpon;
     }
 
+    
+    public int getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+    }
+    
     public String getNama() {
         return nama;
     }

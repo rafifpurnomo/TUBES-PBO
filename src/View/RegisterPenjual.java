@@ -147,38 +147,27 @@ public class RegisterPenjual extends javax.swing.JFrame {
     }//GEN-LAST:event_UsernameActionPerformed
 
     private void regPembeliBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regPembeliBTNActionPerformed
-        try {
-            String usernamePenjual = Username.getText();
-            String passwordPenjual = Password.getText();
-            String namaPenjual = Nama.getText();
-            String noTelponPenjual = noTelpon.getText();
-            String role = "Penjual";
-            
-//          System.out.println("Debug: " + usernamePenjual + ", " + passwordPenjual + ", " + namaPenjual + ", " + noTelponPenjual + ", " + role);
-            if (usernamePenjual.isEmpty() || passwordPenjual.isEmpty() || namaPenjual.isEmpty() || noTelponPenjual.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Harap isi semua kolom", "Peringatan", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            Penjual newPenjual = driver.tambahAkunPenjual(namaPenjual, usernamePenjual, passwordPenjual, role, noTelponPenjual);
-
-            if (newPenjual != null) {
-                boolean status = akunCNTRL.regPenjual(newPenjual);
-                if (status) {
-                    JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
-                    Login newLogin = new Login();
-                    newLogin.setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Gagal membuat akun", "Peringatan", JOptionPane.WARNING_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal membuat akun, data tidak lengkap", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception e) {
-            Logger.getLogger(DriverOnlineShop.class.getName()).log(Level.SEVERE, "Error during registration", e);
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat registrasi", "Error", JOptionPane.ERROR_MESSAGE);
+        String usernamePenjual = Username.getText();
+        String passwordPenjual = Password.getText();
+        String namaPenjual = Nama.getText();
+        String noTelponPenjual = noTelpon.getText();
+        String role = "Penjual";
+        
+        if (usernamePenjual.isEmpty() || passwordPenjual.isEmpty() || namaPenjual.isEmpty() || noTelponPenjual.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Harap isi semua kolom", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        
+        boolean status = akunCNTRL.daftarAkun(namaPenjual, usernamePenjual, passwordPenjual, role, noTelponPenjual);
+        if (status) {
+            JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
+            Login newLogin = new Login();
+            newLogin.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_regPembeliBTNActionPerformed
 
     /**

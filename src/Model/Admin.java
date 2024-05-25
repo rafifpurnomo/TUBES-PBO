@@ -1,15 +1,23 @@
 package Model;
 public class Admin extends Akun {
+    private int idAkun;
     private String nama;
     private String Username;
     private String password;
     private String role;
     private String noTelpon;
 
-    public Admin(String nama, String Username, String password, String role, String noTelpon) {
-        super(nama, Username, password, role, noTelpon);
+    public Admin(int idAkun, String nama, String Username, String password, String role, String noTelpon) {
+        super(idAkun, nama, Username, password, role, noTelpon);
     }
 
+    public int getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(int idAkun) {
+        this.idAkun = idAkun;
+    }
     public String getNama() {
         return nama;
     }

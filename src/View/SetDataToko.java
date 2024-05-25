@@ -52,6 +52,7 @@ public class SetDataToko extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         namaPemilikDisplay = new javax.swing.JLabel();
         DaftarTokoBTN = new javax.swing.JButton();
+        kembaliBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,13 @@ public class SetDataToko extends javax.swing.JFrame {
             }
         });
 
+        kembaliBTN.setText("kembali");
+        kembaliBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,13 +105,18 @@ public class SetDataToko extends javax.swing.JFrame {
                                 .addComponent(namaPemilikDisplay))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(320, 320, 320)
-                        .addComponent(DaftarTokoBTN)))
+                        .addComponent(DaftarTokoBTN))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(kembaliBTN)))
                 .addContainerGap(352, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
+                .addComponent(kembaliBTN)
+                .addGap(67, 67, 67)
                 .addComponent(jLabel2)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -119,7 +132,7 @@ public class SetDataToko extends javax.swing.JFrame {
                 .addComponent(inputAlamatToko, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DaftarTokoBTN)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,6 +146,10 @@ public class SetDataToko extends javax.swing.JFrame {
             driver.tambahToko(status);
         }
     }//GEN-LAST:event_DaftarTokoBTNActionPerformed
+
+    private void kembaliBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliBTNActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kembaliBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +195,7 @@ public class SetDataToko extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton kembaliBTN;
     private javax.swing.JLabel namaPemilikDisplay;
     // End of variables declaration//GEN-END:variables
 }

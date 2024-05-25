@@ -5,6 +5,15 @@
  */
 package View;
 
+import Controller.AkunController;
+import Model.DriverOnlineShop;
+import Model.Pembeli;
+import Model.Penjual;
+import Model.UserSession;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Muhammad Rafif A.P
@@ -14,9 +23,70 @@ public class MenuAdmin extends javax.swing.JFrame {
     /**
      * Creates new form MenuPembeli
      */
+    
+    private DriverOnlineShop driver;
+    private AkunController akunCNTRL;
+    private DefaultTableModel tableModelPenjual, tableModelPembeli;
+    
     public MenuAdmin() {
+        driver = new DriverOnlineShop(this);
+        akunCNTRL = new AkunController();
         initComponents();
+        
+        int jumlahAkun = akunCNTRL.getTotalAkun();
+        int jumlahAkunPenjual = akunCNTRL.getTotalAkunPenjual();
+        int jumlahAkunPembeli = akunCNTRL.getTotalAkunPembeli();
+        int jumlahAkunAdmin = akunCNTRL.getTotalAkunAdmin();
+        
+        namaAdminDisplay.setText(UserSession.getNama());
+        jumlahAkunDisplay.setText(String.valueOf(jumlahAkun));
+        jumlahAkunPenjualDisplay.setText(String.valueOf(jumlahAkunPenjual));
+        jumlahAkunPembeliDisplay.setText(String.valueOf(jumlahAkunPembeli));
+        jumlahAkunAdminDisplay.setText(String.valueOf(jumlahAkunAdmin));
+        
+        NamaUserProfile.setText(UserSession.getNama());
+        UsernameUserProfile.setText(UserSession.getUsername());
+        NoTelpUserProfile.setText(UserSession.getNoTelpon());
+        
+        String[] judulTablePembeli = {"id pembeli", "nama", "no telpon"};
+        tableModelPembeli = new DefaultTableModel(judulTablePembeli, 0);
+        tablePembeli.setModel(tableModelPembeli);
+        loadPembeli();
+        
+        String[] judulTablePenjual = {"id penjual", "nama", "no telp", "id toko" ,"nama toko"};
+        tableModelPenjual = new DefaultTableModel(judulTablePenjual, 0);
+        tablePenjual.setModel(tableModelPenjual);
+        loadPenjual();
     }
+    
+    private void loadPembeli(){
+        List<Pembeli> dataAkunPembeli = akunCNTRL.getAllPembeli();
+
+        for(Pembeli pembeli : dataAkunPembeli){
+            Object[] rowDataAkunPembeli= {
+                pembeli.getIdAkun(),
+                pembeli.getNama(),
+                pembeli.getNoTelpon()
+            };
+            tableModelPembeli.addRow(rowDataAkunPembeli);
+        }    
+    }
+    
+    private void loadPenjual() {
+    List<Penjual> dataAkunPenjual = akunCNTRL.getAllPenjual();
+
+    for (Penjual penjual : dataAkunPenjual) {
+        Object[] rowDataPenjual = {
+            penjual.getIdAkun(),
+            penjual.getNama(),
+            penjual.getNoTelpon(),
+            penjual.getToko() != null ? penjual.getToko().getId_toko() : "" ,
+            penjual.getToko() != null ? penjual.getToko().getNamaToko() : "" 
+        };
+        tableModelPenjual.addRow(rowDataPenjual);
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,32 +97,493 @@ public class MenuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        namaAdminDisplay = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jumlahAkunDisplay = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jumlahAkunPenjualDisplay = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jumlahAkunPembeliDisplay = new javax.swing.JLabel();
+        tambahAdminBTN = new javax.swing.JToggleButton();
+        jumlahAkunAdminDisplay = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        RefreshBTN = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePembeli = new javax.swing.JTable();
+        refreshPembeli = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePenjual = new javax.swing.JTable();
+        refreshPenjual = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        UbahNama = new javax.swing.JButton();
+        UbahUsername = new javax.swing.JButton();
+        UbahNoTelpon = new javax.swing.JButton();
+        UbahPassword = new javax.swing.JButton();
+        LogoutBTN = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        UsernameUserProfile = new javax.swing.JLabel();
+        NamaUserProfile = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        NoTelpUserProfile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("INI MENU ADMIN");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Recap FreshApp");
+
+        namaAdminDisplay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        namaAdminDisplay.setText("nama admin display");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Selamat datang admin");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setText("Jumlah akun");
+
+        jumlahAkunDisplay.setText("jumlah akun");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setText("Penjual");
+
+        jumlahAkunPenjualDisplay.setText("jumlah akun penjual");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel5.setText("Pembeli");
+
+        jumlahAkunPembeliDisplay.setText("jumlah akun pembeli");
+
+        tambahAdminBTN.setText("Tambah admin baru");
+        tambahAdminBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahAdminBTNActionPerformed(evt);
+            }
+        });
+
+        jumlahAkunAdminDisplay.setText("jumlah akun admin");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel6.setText("Admin");
+
+        RefreshBTN.setText("refresh page");
+        RefreshBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshBTNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(RefreshBTN))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(namaAdminDisplay))
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahAkunDisplay))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahAkunPenjualDisplay))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahAkunPembeliDisplay))
+                            .addComponent(tambahAdminBTN)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahAkunAdminDisplay)))
+                        .addGap(0, 405, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namaAdminDisplay)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RefreshBTN)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jumlahAkunDisplay))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jumlahAkunPenjualDisplay))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jumlahAkunPembeliDisplay))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jumlahAkunAdminDisplay))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addComponent(tambahAdminBTN)
+                .addGap(67, 67, 67))
+        );
+
+        jTabbedPane1.addTab("Home", jPanel1);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("Daftar Akun Pembeli");
+
+        tablePembeli.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablePembeli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePembeliMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablePembeli);
+
+        refreshPembeli.setText("refresh page");
+        refreshPembeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshPembeliActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addComponent(refreshPembeli)
+                        .addGap(118, 118, 118))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshPembeli))
+                .addContainerGap(269, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Daftar pembeli", jPanel2);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Daftar Akun Penjual");
+
+        tablePenjual.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablePenjual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePenjualMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablePenjual);
+
+        refreshPenjual.setText("refresh page");
+        refreshPenjual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshPenjualActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshPenjual)))
+                .addGap(118, 118, 118))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshPenjual))
+                .addContainerGap(269, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Daftar penjual", jPanel3);
+
+        UbahNama.setText("Ubah Nama");
+        UbahNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNamaActionPerformed(evt);
+            }
+        });
+
+        UbahUsername.setText("Ubah Username");
+        UbahUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahUsernameActionPerformed(evt);
+            }
+        });
+
+        UbahNoTelpon.setText("Ubah no Telpon");
+        UbahNoTelpon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahNoTelponActionPerformed(evt);
+            }
+        });
+
+        UbahPassword.setText("Ubah Password");
+        UbahPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahPasswordActionPerformed(evt);
+            }
+        });
+
+        LogoutBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        LogoutBTN.setText("Logout");
+        LogoutBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutBTNActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Nama:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Username:");
+
+        UsernameUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        UsernameUserProfile.setText("username user");
+
+        NamaUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NamaUserProfile.setText("nama user");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("No Telpon:");
+
+        NoTelpUserProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        NoTelpUserProfile.setText("no telpon user");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(10, 10, 10))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(44, 44, 44)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NoTelpUserProfile)
+                            .addComponent(UsernameUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NamaUserProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UbahNama)
+                            .addComponent(LogoutBTN)
+                            .addComponent(UbahUsername)
+                            .addComponent(UbahNoTelpon)))
+                    .addComponent(UbahPassword))
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(NamaUserProfile)
+                    .addComponent(UbahNama))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(UsernameUserProfile)
+                    .addComponent(UbahUsername))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(NoTelpUserProfile)
+                    .addComponent(UbahNoTelpon))
+                .addGap(18, 18, 18)
+                .addComponent(UbahPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(LogoutBTN)
+                .addGap(145, 145, 145))
+        );
+
+        jTabbedPane1.addTab("profile", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(178, 178, 178))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(jLabel1)
-                .addContainerGap(267, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tambahAdminBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahAdminBTNActionPerformed
+        TambahAdminBaru tmbhADMIN = new TambahAdminBaru();
+        tmbhADMIN.setVisible(true);
+    }//GEN-LAST:event_tambahAdminBTNActionPerformed
+
+    private void UbahNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNamaActionPerformed
+        UbahNamaUser changeName = new UbahNamaUser();
+        changeName.setVisible(true);
+    }//GEN-LAST:event_UbahNamaActionPerformed
+
+    private void UbahUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahUsernameActionPerformed
+        UbahUsername changeUsername = new UbahUsername();
+        changeUsername.setVisible(true);
+    }//GEN-LAST:event_UbahUsernameActionPerformed
+
+    private void UbahNoTelponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahNoTelponActionPerformed
+        UbahNoTelpon changeNoTelpon = new UbahNoTelpon();
+        changeNoTelpon.setVisible(true);
+    }//GEN-LAST:event_UbahNoTelponActionPerformed
+
+    private void UbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahPasswordActionPerformed
+        UbahPassword changePassword = new UbahPassword();
+        changePassword.setVisible(true);
+    }//GEN-LAST:event_UbahPasswordActionPerformed
+
+    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
+        UserSession.clearSession();
+
+        Login LoginScreen = new Login();
+        LoginScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoutBTNActionPerformed
+
+    private void refreshPembeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshPembeliActionPerformed
+        tablePembeli.removeAll();
+        int rows = tableModelPembeli.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            tableModelPembeli.removeRow(i);
+        }
+        
+        loadPembeli();
+    }//GEN-LAST:event_refreshPembeliActionPerformed
+
+    private void refreshPenjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshPenjualActionPerformed
+        tablePenjual.removeAll();
+        int rows = tableModelPenjual.getRowCount();
+        for (int i = rows - 1; i >= 0; i--) {
+            tableModelPenjual.removeRow(i);
+        }
+        loadPenjual();
+    }//GEN-LAST:event_refreshPenjualActionPerformed
+
+    private void tablePembeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePembeliMouseClicked
+        int selectedRow = tablePembeli.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAkun = (int) tableModelPembeli.getValueAt(selectedRow, 0);
+            String nama = tableModelPembeli.getValueAt(selectedRow, 1).toString();
+            String noTelp = tableModelPembeli.getValueAt(selectedRow, 2).toString();
+            
+            DeletePembeli asDelPembeli = new DeletePembeli();
+            asDelPembeli.DeletePembeli(idAkun, nama, noTelp);
+            asDelPembeli.setVisible(true);
+        }
+    }//GEN-LAST:event_tablePembeliMouseClicked
+
+    private void RefreshBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshBTNActionPerformed
+        int jumlahAkun = akunCNTRL.getTotalAkun();
+        int jumlahAkunPenjual = akunCNTRL.getTotalAkunPenjual();
+        int jumlahAkunPembeli = akunCNTRL.getTotalAkunPembeli();
+        int jumlahAkunAdmin = akunCNTRL.getTotalAkunAdmin();
+        
+        jumlahAkunDisplay.setText(String.valueOf(jumlahAkun));
+        jumlahAkunPenjualDisplay.setText(String.valueOf(jumlahAkunPenjual));
+        jumlahAkunPembeliDisplay.setText(String.valueOf(jumlahAkunPembeli));
+        jumlahAkunAdminDisplay.setText(String.valueOf(jumlahAkunAdmin));
+    }//GEN-LAST:event_RefreshBTNActionPerformed
+
+    private void tablePenjualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePenjualMouseClicked
+        int selectedRow = tablePenjual.getSelectedRow();
+        if (selectedRow != -1) {
+            int idAkun = (int) tableModelPenjual.getValueAt(selectedRow, 0);
+            String nama = tableModelPenjual.getValueAt(selectedRow, 1).toString();
+            String noTelp = tableModelPenjual.getValueAt(selectedRow, 2).toString();
+            int idToko = (int) tableModelPenjual.getValueAt(selectedRow, 3);
+            String namaToko = tableModelPenjual.getValueAt(selectedRow, 4).toString();
+            
+            DeletePenjual asDelPenjual = new DeletePenjual();
+            asDelPenjual.DeletePenjual(idAkun, nama, noTelp, namaToko, idToko);
+            asDelPenjual.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_tablePenjualMouseClicked
 
     /**
      * @param args the command line arguments
@@ -93,6 +624,42 @@ public class MenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LogoutBTN;
+    private javax.swing.JLabel NamaUserProfile;
+    private javax.swing.JLabel NoTelpUserProfile;
+    private javax.swing.JButton RefreshBTN;
+    private javax.swing.JButton UbahNama;
+    private javax.swing.JButton UbahNoTelpon;
+    private javax.swing.JButton UbahPassword;
+    private javax.swing.JButton UbahUsername;
+    private javax.swing.JLabel UsernameUserProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel jumlahAkunAdminDisplay;
+    private javax.swing.JLabel jumlahAkunDisplay;
+    private javax.swing.JLabel jumlahAkunPembeliDisplay;
+    private javax.swing.JLabel jumlahAkunPenjualDisplay;
+    private javax.swing.JLabel namaAdminDisplay;
+    private javax.swing.JButton refreshPembeli;
+    private javax.swing.JButton refreshPenjual;
+    private javax.swing.JTable tablePembeli;
+    private javax.swing.JTable tablePenjual;
+    private javax.swing.JToggleButton tambahAdminBTN;
     // End of variables declaration//GEN-END:variables
 }

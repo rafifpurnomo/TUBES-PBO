@@ -147,38 +147,27 @@ public class RegisterPembeli extends javax.swing.JFrame {
     }//GEN-LAST:event_UsernameActionPerformed
 
     private void regPembeliBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regPembeliBTNActionPerformed
-        try {
         String usernamePembeli = Username.getText();
         String passwordPembeli = Password.getText();
         String namaPembeli = Nama.getText();
         String noTelponPembeli = noTelpon.getText();
         String role = "Pembeli";
         
-//      System.out.println("Debug: " + usernamePembeli + ", " + passwordPembeli + ", " + namaPembeli + ", " + noTelponPembeli + ", " + role);
         if (usernamePembeli.isEmpty() || passwordPembeli.isEmpty() || namaPembeli.isEmpty() || noTelponPembeli.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Harap isi semua kolom", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        Pembeli newPembeli = driver.tambahAkunPembeli(namaPembeli, usernamePembeli, passwordPembeli, role, noTelponPembeli);
         
-        if (newPembeli != null) {
-            boolean status = akunCNTRL.regPembeli(newPembeli);
-            if (status) {
-                JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
-                Login newLogin = new Login();
-                newLogin.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal membuat akun", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            }
+        boolean status = akunCNTRL.daftarAkun(namaPembeli, usernamePembeli, passwordPembeli, role, noTelponPembeli);
+        if (status) {
+            JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
+            Login newLogin = new Login();
+            newLogin.setVisible(true);
+            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Gagal membuat akun, data tidak lengkap", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Berhasil membuat akun", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
         }
-    } catch (Exception e) {
-        Logger.getLogger(DriverOnlineShop.class.getName()).log(Level.SEVERE, "Error during registration", e);
-        JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat registrasi", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        
     }//GEN-LAST:event_regPembeliBTNActionPerformed
 
     /**
