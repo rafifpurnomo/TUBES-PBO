@@ -119,7 +119,7 @@ public class UbahAlamatToko extends javax.swing.JFrame {
         if (inputNamaToko == null) {
             JOptionPane.showMessageDialog(null, "alamat toko tidak boleh kosong!", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
-            driver.changeAlamatToko(UserSession.getId(), inputNamaToko.getText());
+            driver.changeAlamatToko(UserSession.getIdToko(), inputNamaToko.getText());
         }
     }//GEN-LAST:event_UbahNamaTokoBTNActionPerformed
 

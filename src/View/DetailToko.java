@@ -24,11 +24,8 @@ public class DetailToko extends javax.swing.JFrame {
     public DetailToko() {
         tokoCNTRL = new TokoController();
         mknCNTRL = new MakananController();
-        initComponents();
         
-        String[] judulTable = {"id makanan","nama makanan", "harga"};
-        table_model = new DefaultTableModel(judulTable, 0);
-        tableMakanan.setModel(table_model);
+        initComponents();
     }
     
     public void DetailToko(int idToko, String namaToko, String alamat){
@@ -39,20 +36,31 @@ public class DetailToko extends javax.swing.JFrame {
         namaTokoDisplay.setText(namaToko);
         alamatTokoDisplay.setText(alamat);
         
+        String[] judulTable = {"id makanan", "nama makanan", "harga"};
+        table_model = new DefaultTableModel(judulTable, 0);
+        tableMakanan.setModel(table_model);
+        
         loadData(idToko);
     }
     
     public void loadData(int idToko){
         List<Makanan> dataMakanan = mknCNTRL.getMakananByToko(idToko);
         
-        for(Makanan makanan : dataMakanan){
+        if (dataMakanan == null) {
+            System.out.println("null");
+        } else {
+            System.out.println(dataMakanan.size());
+            System.out.println(idToko);
+            for(Makanan makanan : dataMakanan){
             Object[] rowData = {
                 makanan.getId_makanan(),
                 makanan.getNamaBarang(),
                 makanan.getHarga()
-        };
-        table_model.addRow(rowData);
+            };
+                table_model.addRow(rowData);
+            }
         }
+        
     }
 
     /**

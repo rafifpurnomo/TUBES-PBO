@@ -25,7 +25,7 @@ public class EditDataMakanan extends javax.swing.JFrame {
     private DriverOnlineShop driver;
     private MakananController mknnCNTRL;
     public String namaMakanan;
-    public int stok, idMakanan;
+    public int idMakanan;
     public double harga;
     
     public EditDataMakanan() {
@@ -34,13 +34,11 @@ public class EditDataMakanan extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void editDataMakanan(int idMakanan, String namaMakanan, int stok, double harga){
+    public void editDataMakanan(int idMakanan, String namaMakanan, double harga){
         this.idMakanan = idMakanan;
         this.namaMakanan = namaMakanan;
-        this.stok = stok;
         this.harga = harga;
         
-        String STOK = String.valueOf(stok);
         String HARGA = String.valueOf(harga);
         String ID_MAKANAN = String.valueOf(idMakanan);
         

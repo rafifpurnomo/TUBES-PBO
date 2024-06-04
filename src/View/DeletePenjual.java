@@ -9,10 +9,6 @@ import Controller.AkunController;
 import Model.DriverOnlineShop;
 import Model.Toko;
 
-/**
- *
- * @author Rafif Purnomo
- */
 public class DeletePenjual extends javax.swing.JFrame {
 
     /**

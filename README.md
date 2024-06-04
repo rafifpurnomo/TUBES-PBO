@@ -16,7 +16,7 @@ Pada aplikasi ini memilikii 3 role utama, yaitu Admin, Penjual, dan Pembeli. Ser
 |Update Profile| ✅   |✅ |  ✅|
 |Update Toko| ✅   |❌ |  ❌|
 |Transaksi| ✅   |✅ |  ❌|
-|Checkout Barang| ❌   |❌ |  ✅|
+|Checkout Barang| ❌   |✅|❌|
 |Hapus User atau Barang| ❌   |❌ |  ✅|
 
 # Contributing

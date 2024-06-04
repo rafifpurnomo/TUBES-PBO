@@ -17,15 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class MakananController {
-    
-    private MenuPenjual asMenuPenjual;
-    
-    public void MakananController(MenuPenjual asMenuPenjual){
-        this.asMenuPenjual = asMenuPenjual;
-        
-    }
-    
+public class MakananController { 
     public List<Makanan> getMakananByToko(int idtoko) {
         List<Makanan> makananList = new ArrayList<>();
         String sql = "SELECT * FROM makanan WHERE id_toko = ?";

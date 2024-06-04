@@ -50,6 +50,7 @@ public class LoginController implements Model.Login{
                     String namaToko = rs.getString("nama_toko");
                     String alamatToko = rs.getString("alamat");
                     
+                    
                     UserSession.setId(id);
                     UserSession.setIdToko(id_toko);
                     UserSession.setUsername(username);

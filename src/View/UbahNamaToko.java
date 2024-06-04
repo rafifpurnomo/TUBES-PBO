@@ -119,7 +119,7 @@ public class UbahNamaToko extends javax.swing.JFrame {
         if (inputNamaToko == null) {
             JOptionPane.showMessageDialog(null, "nama toko tidak boleh kosong!", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
-            driver.changeNamaToko(UserSession.getId(), inputNamaToko.getText());
+            driver.changeNamaToko(UserSession.getIdToko(), inputNamaToko.getText());
         }
     }//GEN-LAST:event_UbahNamaTokoBTNActionPerformed
 

@@ -35,14 +35,14 @@ public class TokoController {
         }
     }
     
-    public boolean gantiNamaToko(int id_akun, String newNamaToko) {
-        String sql = "UPDATE toko SET nama_toko=? WHERE id_akun=?";
+    public boolean gantiNamaToko(int id_toko, String newNamaToko) {
+        String sql = "UPDATE toko SET nama_toko=? WHERE id_toko=?";
 
         try (Connection conn = ConfigDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, newNamaToko);
-            stmt.setInt(2, id_akun);
+            stmt.setInt(2, id_toko);
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
@@ -53,14 +53,14 @@ public class TokoController {
         }
     }
     
-    public boolean gantiAlamatToko(int id_akun, String newAlamatToko) {
-        String sql = "UPDATE toko SET alamat=? WHERE id_akun=?";
+    public boolean gantiAlamatToko(int id_toko, String newAlamatToko) {
+        String sql = "UPDATE toko SET alamat=? WHERE id_toko=?";
 
         try (Connection conn = ConfigDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, newAlamatToko);
-            stmt.setInt(2, id_akun);
+            stmt.setInt(2, id_toko);
 
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
@@ -105,12 +105,12 @@ public class TokoController {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    int idAkun = rs.getInt("id_akun");
                     int idToko = rs.getInt("id_toko");
+                    int idAkun = rs.getInt("id_akun");
                     String nama_Toko = rs.getString("nama_toko");
                     String alamat = rs.getString("alamat");
                     
-                    Toko newToko = new Toko(idAkun, idToko, namaToko, nama_Toko);
+                    Toko newToko = new Toko(idToko, idAkun , namaToko, alamat);
                     return newToko;
                 }
             }

@@ -47,8 +47,9 @@ public class MenuPenjual extends javax.swing.JFrame {
         UsernameUserProfile.setText(UserSession.getUsername());
         NamaTokoProfile.setText(UserSession.getNamaToko());
         AlamatTokoProfile.setText(UserSession.getAlamatToko());
+        test.setText(String.valueOf(UserSession.getIdToko()));
         
-        String[] judulTable = {"id makanan","nama makanan", "harga"};
+        String[] judulTable = {"id makanan", "nama makanan", "harga"};
         table_model = new DefaultTableModel(judulTable, 0);
         TableDaftarProduk.setModel(table_model);
         
@@ -82,6 +83,7 @@ public class MenuPenjual extends javax.swing.JFrame {
         HomePembeli = new javax.swing.JPanel();
         SelamatDatang = new javax.swing.JLabel();
         NamaUserHome = new javax.swing.JLabel();
+        test = new javax.swing.JLabel();
         KeranjangPembeli = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -117,15 +119,22 @@ public class MenuPenjual extends javax.swing.JFrame {
         NamaUserHome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         NamaUserHome.setText("Nama User");
 
+        test.setText("jLabel4");
+
         javax.swing.GroupLayout HomePembeliLayout = new javax.swing.GroupLayout(HomePembeli);
         HomePembeli.setLayout(HomePembeliLayout);
         HomePembeliLayout.setHorizontalGroup(
             HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomePembeliLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(SelamatDatang)
-                .addGap(5, 5, 5)
-                .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                        .addComponent(test)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                        .addComponent(SelamatDatang)
+                        .addGap(5, 5, 5)
+                        .addComponent(NamaUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         HomePembeliLayout.setVerticalGroup(
@@ -135,7 +144,9 @@ public class MenuPenjual extends javax.swing.JFrame {
                 .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SelamatDatang)
                     .addComponent(NamaUserHome))
-                .addContainerGap(442, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(test)
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         MenuPembeli.addTab("Home", HomePembeli);
@@ -495,11 +506,10 @@ public class MenuPenjual extends javax.swing.JFrame {
         if (selectedRow != -1) {
             int idMakanan = (int) table_model.getValueAt(selectedRow, 0);
             String namaMakanan = table_model.getValueAt(selectedRow, 1).toString();
-            int stok = Integer.parseInt(table_model.getValueAt(selectedRow, 2).toString());
-            double harga = Double.parseDouble(table_model.getValueAt(selectedRow, 3).toString());
+            double harga = (double) (table_model.getValueAt(selectedRow, 2));
 
             EditDataMakanan editForm = new EditDataMakanan();
-            editForm.editDataMakanan(idMakanan, namaMakanan, stok, harga);
+            editForm.editDataMakanan(idMakanan, namaMakanan, harga);
             editForm.setVisible(true);
         }
     }//GEN-LAST:event_TableDaftarProdukMouseClicked
@@ -570,6 +580,7 @@ public class MenuPenjual extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton tambahMakanan;
+    private javax.swing.JLabel test;
     private javax.swing.JButton updateData;
     // End of variables declaration//GEN-END:variables
 }

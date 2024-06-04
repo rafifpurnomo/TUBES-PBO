@@ -205,7 +205,7 @@ public class MenuPembeli extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Daftar toko makanan");
 
-        updateDaftarTokoBTN.setText("update daftar toko");
+        updateDaftarTokoBTN.setText("Refresh Pencarian");
         updateDaftarTokoBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateDaftarTokoBTNActionPerformed(evt);
@@ -221,6 +221,14 @@ public class MenuPembeli extends javax.swing.JFrame {
                 .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HomePembeliLayout.createSequentialGroup()
                         .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(HomePembeliLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(updateDaftarTokoBTN)))
+                        .addGap(0, 182, Short.MAX_VALUE))
+                    .addGroup(HomePembeliLayout.createSequentialGroup()
+                        .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HomePembeliLayout.createSequentialGroup()
                                 .addComponent(SelamatDatang)
                                 .addGap(5, 5, 5)
@@ -233,15 +241,7 @@ public class MenuPembeli extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cariTokoBTN)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(HomePembeliLayout.createSequentialGroup()
-                        .addGroup(HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(HomePembeliLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(updateDaftarTokoBTN)))
-                        .addGap(0, 182, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         HomePembeliLayout.setVerticalGroup(
             HomePembeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,8 +546,6 @@ public class MenuPembeli extends javax.swing.JFrame {
     }//GEN-LAST:event_UbahUsernameActionPerformed
 
     private void cariTokoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariTokoBTNActionPerformed
-        cariToko.getText();
-        
         daftarTokoMakanan.removeAll();
         int rows = table_model.getRowCount();
         for (int i = rows - 1; i >= 0; i--) {
@@ -573,8 +571,8 @@ public class MenuPembeli extends javax.swing.JFrame {
         for (int i = rows - 1; i >= 0; i--) {
             table_model.removeRow(i);
         }
+        cariToko.setText("");
         
-        loadToko();
     }//GEN-LAST:event_updateDaftarTokoBTNActionPerformed
 
     private void daftarTokoMakananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarTokoMakananMouseClicked
@@ -587,7 +585,6 @@ public class MenuPembeli extends javax.swing.JFrame {
             DetailToko detailtoko = new DetailToko();
             detailtoko.DetailToko(idToko, namaToko, alamat);
             detailtoko.setVisible(true);
-            
         }
     }//GEN-LAST:event_daftarTokoMakananMouseClicked
 

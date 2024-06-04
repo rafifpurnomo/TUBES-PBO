@@ -159,7 +159,7 @@ public class AkunController {
                 totalAkun = rs.getInt("total");
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Print stack trace to help with debugging
+            e.printStackTrace();  
         }
 
         return totalAkun;
@@ -177,7 +177,7 @@ public class AkunController {
                 totalAkun = rs.getInt("total");
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Print stack trace to help with debugging
+            e.printStackTrace();  
         }
 
         return totalAkun;
@@ -195,7 +195,7 @@ public class AkunController {
                 totalAkun = rs.getInt("total");
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Print stack trace to help with debugging
+            e.printStackTrace();  
         }
 
         return totalAkun;
@@ -213,7 +213,7 @@ public class AkunController {
                 totalAkun = rs.getInt("total");
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Print stack trace to help with debugging
+            e.printStackTrace();  
         }
 
         return totalAkun;

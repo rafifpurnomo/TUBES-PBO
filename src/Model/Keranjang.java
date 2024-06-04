@@ -64,6 +64,6 @@ public class Keranjang {
     public void setTotal_harga(double total_harga) {
         this.total_harga = total_harga;
     }
-    
+
     
 }
