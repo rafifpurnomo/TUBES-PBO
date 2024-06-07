@@ -12,12 +12,13 @@ Pada aplikasi ini memilikii 3 role utama, yaitu Admin, Penjual, dan Pembeli. Ser
 | Register| ✅          |    ✅   | ❌ |
 |Login    | ✅          |✅       | ✅ |
 |Tambah & hapus Keranjang| ❌   |✅ |  ❌|
-|Tambah & hapus Barang| ✅   |❌ |  ❌|
+|Tambah & hapus Makanan| ✅   |❌ |  ❌|
 |Update Profile| ✅   |✅ |  ✅|
 |Update Toko| ✅   |❌ |  ❌|
 |Transaksi| ✅   |✅ |  ❌|
 |Checkout Barang| ❌   |✅|❌|
-|Hapus User atau Barang| ❌   |❌ |  ✅|
+|Hapus User atau Makanan| ❌   |❌ |  ✅|
+|Tambah Admin| ❌   |❌ |  ✅|
 
 # Contributing
 **Kelompok 10 PBO**

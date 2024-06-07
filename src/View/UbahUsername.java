@@ -28,7 +28,7 @@ public class UbahUsername extends javax.swing.JFrame {
         akunCNTRL = new AkunController();
         initComponents();
         
-        NamaSekarang.setText(UserSession.getNama());
+        NamaSekarang.setText(UserSession.getUsername());
     }
 
     /**
