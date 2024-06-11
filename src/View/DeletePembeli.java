@@ -49,86 +49,120 @@ public class DeletePembeli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         kembaliBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         idAkunDisplay = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         namaAkunDisplay = new javax.swing.JLabel();
-        notelpAkunDisplay = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        notelpAkunDisplay = new javax.swing.JLabel();
         hapusBTN = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        kembaliBTN.setText("kembali");
+        jPanel1.setBackground(new java.awt.Color(196, 202, 196));
+
+        kembaliBTN.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        kembaliBTN.setText("<-");
         kembaliBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembaliBTNActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("id akun pembeli");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("ID Pembeli");
 
-        idAkunDisplay.setText("id akun pembeli");
+        idAkunDisplay.setFont(new java.awt.Font("Segoe UI Semilight", 0, 21)); // NOI18N
+        idAkunDisplay.setText("ID Akun Pembeli");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("nama akun pembeli");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Nama Pembeli");
 
-        namaAkunDisplay.setText("nama akun pembeli");
+        namaAkunDisplay.setFont(new java.awt.Font("Segoe UI Semilight", 0, 21)); // NOI18N
+        namaAkunDisplay.setText("Nama Akun Pembeli");
 
-        notelpAkunDisplay.setText("no telp akun pembeli");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("No HP Pembeli");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("no telpon akun pembeli");
+        notelpAkunDisplay.setFont(new java.awt.Font("Segoe UI Semilight", 0, 21)); // NOI18N
+        notelpAkunDisplay.setText("No HP Akun Pembeli");
 
-        hapusBTN.setText("hapus pembeli");
+        hapusBTN.setBackground(new java.awt.Color(255, 102, 102));
+        hapusBTN.setText("Hapus Pembeli");
         hapusBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hapusBTNActionPerformed(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel4.setText("Data Akun Pembeli");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(421, 421, 421)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(notelpAkunDisplay)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1)
+                    .addComponent(idAkunDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(namaAkunDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kembaliBTN)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(371, 371, 371)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(hapusBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(364, 364, 364))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kembaliBTN)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idAkunDisplay)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namaAkunDisplay)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notelpAkunDisplay)
+                .addGap(72, 72, 72)
+                .addComponent(hapusBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(kembaliBTN)
-                    .addComponent(idAkunDisplay)
-                    .addComponent(jLabel2)
-                    .addComponent(namaAkunDisplay)
-                    .addComponent(jLabel3)
-                    .addComponent(notelpAkunDisplay)
-                    .addComponent(hapusBTN))
-                .addContainerGap(541, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(kembaliBTN)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idAkunDisplay)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaAkunDisplay)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notelpAkunDisplay)
-                .addGap(47, 47, 47)
-                .addComponent(hapusBTN)
-                .addContainerGap(213, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void kembaliBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliBTNActionPerformed
@@ -181,6 +215,8 @@ public class DeletePembeli extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton kembaliBTN;
     private javax.swing.JLabel namaAkunDisplay;
     private javax.swing.JLabel notelpAkunDisplay;
