@@ -18,6 +18,7 @@ Pada aplikasi ini memilikii 3 role utama, yaitu Admin, Penjual, dan Pembeli. Ser
 |Transaksi| ✅   |✅ |  ❌|
 |Checkout Barang| ❌   |✅|❌|
 |Hapus User atau Barang| ❌   |❌ |  ✅|
+|Tambah Admin| ❌   |❌ |  ✅|
 
 # Contributing
 **Kelompok 10 PBO**
